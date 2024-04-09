@@ -5,5 +5,5 @@
     <color name="grey_color">#FF707070</color>
     <color name="green_color">#FF2FBB4F</color>
     <color name="container_color">#FFF2F2F2</color>
-    <color name="white_color">#FFFFFFF</color>
+    <color name="white_color">#FFFFFFFF</color>
 </resources>
