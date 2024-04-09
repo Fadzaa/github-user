@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -30,11 +32,11 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "https://api.github.com")
-            buildConfigField("String", "API_KEY", "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")
+            buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("API_KEY"))
         }
         debug {
             buildConfigField("String", "BASE_URL", "https://api.github.com")
-            buildConfigField("String", "API_KEY", "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")
+            buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("API_KEY"))
         }
     }
     compileOptions {
