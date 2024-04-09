@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">github_api</string>
+    <string name="greeting">Hello There,</string>
+    <string name="followings">Followings</string>
+    <string name="followers">Followers</string>
+    <string name="search_user">Search User...</string>
+    <string name="detail_user">Detail User</string>
+    <string name="public_repo">Public Repo</string>
+    <string name="starred_repo">Starred Repo</string>
+
 </resources>
