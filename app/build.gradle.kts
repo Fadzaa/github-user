@@ -31,11 +31,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "https://api.github.com")
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("BASE_URL"))
             buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("API_KEY"))
         }
         debug {
-            buildConfigField("String", "BASE_URL", "https://api.github.com")
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("BASE_URL"))
             buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("API_KEY"))
         }
     }
