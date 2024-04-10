@@ -6,6 +6,12 @@
         <item name="android:textColor">@color/black_color</item>
     </style>
 
+    <style name="HeadingMedium">
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_color</item>
+    </style>
+
     <style name="HeadingSmall">
         <item name="android:fontFamily">@font/montserrat_regular</item>
         <item name="android:textSize">12sp</item>

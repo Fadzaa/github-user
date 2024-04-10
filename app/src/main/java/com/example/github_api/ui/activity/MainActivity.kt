@@ -1,12 +1,13 @@
 package com.example.github_api.ui.activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.github_api.DetailUserActivity
 import com.example.github_api.R
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityMainBinding
@@ -53,6 +54,12 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT).show()
                     false
                 }
+        }
+
+        binding.ivArrow.setOnClickListener {
+            val intent = Intent(this, DetailUserActivity::class.java)
+            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+            startActivity(intent)
         }
     }
 

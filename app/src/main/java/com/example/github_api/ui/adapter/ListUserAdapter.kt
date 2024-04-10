@@ -1,25 +1,17 @@
 package com.example.github_api.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.github_api.DetailUserActivity
 import com.example.github_api.R
 import com.example.github_api.data.response.DetailUserResponse
-import com.example.github_api.data.response.ItemsItem
 import com.example.github_api.databinding.ItemUserVerticalBinding
 
-class ListUserAdapter(
-    private var listUser: List<DetailUserResponse>
-) : RecyclerView.Adapter<ListUserAdapter.ListUserViewHolder>() {
-
-
-//    fun updateData(newListUser: List<DetailUserResponse>) {
-//        listUser = newListUser
-//        notifyDataSetChanged()
-//    }
-
+class ListUserAdapter(private var listUser: List<DetailUserResponse>) : RecyclerView.Adapter<ListUserAdapter.ListUserViewHolder>() {
 
     class ListUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemUserVerticalBinding.bind(itemView)
@@ -44,14 +36,18 @@ class ListUserAdapter(
         return ListUserViewHolder(view)
     }
 
-
-
     override fun getItemCount(): Int {
         return listUser.size
     }
 
     override fun onBindViewHolder(holder: ListUserViewHolder, position: Int) {
         holder.bind(listUser[position])
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailUserActivity::class.java)
+            intent.putExtra(DetailUserActivity.EXTRA_USER, listUser[position])
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 }

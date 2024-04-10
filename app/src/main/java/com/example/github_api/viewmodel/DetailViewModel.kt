@@ -5,14 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.github_api.data.response.DetailUserResponse
+import com.example.github_api.data.response.ListFollowResponse
+import com.example.github_api.data.response.ListFollowResponseItem
 import com.example.github_api.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DetailViewModel : ViewModel() {
-    private val _user = MutableLiveData<DetailUserResponse>()
-    val user: LiveData<DetailUserResponse> = _user
+    private val _listFollowers = MutableLiveData<ListFollowResponseItem>()
+    val listFollowers: LiveData<ListFollowResponseItem> = _listFollowers
+
+    private val _listFollowings = MutableLiveData<ListFollowResponseItem>()
+    val listFollowings: LiveData<ListFollowResponseItem> = _listFollowings
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -21,31 +26,13 @@ class DetailViewModel : ViewModel() {
         private const val TAG = "DetailViewModel"
     }
 
-    fun getDetailUser(username: String) {
-        _isLoading.value = true
+    init {
 
-        val client = ApiConfig.getApiService().getUserDetail(username)
-
-        client.enqueue(
-            object : Callback<DetailUserResponse> {
-                override fun onResponse(
-                    call: Call<DetailUserResponse>,
-                    response: Response<DetailUserResponse>,
-                ) {
-                    _isLoading.value = false
-                    if (response.isSuccessful) {
-                        _user.value = response.body()
-                    } else {
-                        Log.e(TAG, "onFailure: ${response.message()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                    _isLoading.value = false
-                    Log.e(TAG, "onFailure: ${t.message.toString()}")
-                }
-
-            }
-        )
     }
+
+    private fun getListUserFollowers() {
+
+    }
+
+
 }

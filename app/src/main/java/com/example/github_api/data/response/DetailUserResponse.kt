@@ -1,6 +1,7 @@
 package com.example.github_api.data.response
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class DetailUserResponse(
 
@@ -99,4 +100,4 @@ data class DetailUserResponse(
 
 	@field:SerializedName("node_id")
 	val nodeId: String
-)
+) : Serializable
