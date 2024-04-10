@@ -1,22 +1,26 @@
-package com.example.github_api.ui
-
+package com.example.github_api.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.github_api.R
 import com.example.github_api.data.response.DetailUserResponse
-
 import com.example.github_api.databinding.ActivityMainBinding
+import com.example.github_api.ui.adapter.ListUserAdapter
 import com.example.github_api.viewmodel.MainViewModel
+import com.example.github_api.viewmodel.SearchViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
+    private lateinit var listUserAdapter: ListUserAdapter
 
     private val mainViewModel by viewModels<MainViewModel>()
+    private val searchViewModel by viewModels<SearchViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +28,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+        binding.rvUsers.setHasFixedSize(true)
+        binding.rvUsers.layoutManager = LinearLayoutManager(this)
 
         mainViewModel.user.observe(this) {
             setCurrentUser(it)
+        }
+
+        searchViewModel.listDetailUsers.observe(this) {
+            setRvUser(it)
         }
 
         mainViewModel.isLoading.observe(this) {
@@ -45,8 +54,6 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
         }
-
-
     }
 
     private fun setCurrentUser(detailUserResponse: DetailUserResponse) {
@@ -61,6 +68,11 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this)
             .load(detailUserResponse.avatarUrl)
             .into(binding.civCurrentUser)
+    }
+
+    private fun setRvUser(listUser: List<DetailUserResponse>) {
+        listUserAdapter = ListUserAdapter(listUser)
+        binding.rvUsers.adapter = listUserAdapter
     }
 
 

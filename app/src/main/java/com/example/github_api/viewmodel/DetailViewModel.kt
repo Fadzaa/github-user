@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class DetailViewModel : ViewModel() {
     private val _user = MutableLiveData<DetailUserResponse>()
     val user: LiveData<DetailUserResponse> = _user
 
@@ -18,18 +18,13 @@ class MainViewModel : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     companion object{
-        private const val TAG = "MainViewModel"
+        private const val TAG = "DetailViewModel"
     }
 
-    init {
-        getMyUsers()
-    }
-
-
-    private fun getMyUsers() {
+    fun getDetailUser(username: String) {
         _isLoading.value = true
 
-        val client = ApiConfig.getApiService().getMyUserDetail()
+        val client = ApiConfig.getApiService().getUserDetail(username)
 
         client.enqueue(
             object : Callback<DetailUserResponse> {
@@ -53,6 +48,4 @@ class MainViewModel : ViewModel() {
             }
         )
     }
-
-
 }

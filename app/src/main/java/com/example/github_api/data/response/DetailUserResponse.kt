@@ -17,7 +17,7 @@ data class DetailUserResponse(
 	val twitterUsername: Any,
 
 	@field:SerializedName("bio")
-	val bio: Any,
+	val bio: String,
 
 	@field:SerializedName("created_at")
 	val createdAt: String,
@@ -41,7 +41,7 @@ data class DetailUserResponse(
 	val siteAdmin: Boolean,
 
 	@field:SerializedName("company")
-	val company: Any,
+	val company: String,
 
 	@field:SerializedName("id")
 	val id: Int,
@@ -53,7 +53,7 @@ data class DetailUserResponse(
 	val gravatarId: String,
 
 	@field:SerializedName("email")
-	val email: Any,
+	val email: String,
 
 	@field:SerializedName("organizations_url")
 	val organizationsUrl: String,
