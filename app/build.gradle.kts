@@ -61,8 +61,8 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
 
     testImplementation("junit:junit:4.13.2")

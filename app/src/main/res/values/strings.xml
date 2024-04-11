@@ -8,5 +8,7 @@
     <string name="public_repo">Public Repo (%1$d)</string>
     <string name="starred_repo">Starred Repo</string>
     <string name="separator">-</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

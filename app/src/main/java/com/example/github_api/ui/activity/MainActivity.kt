@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.github_api.DetailUserActivity
 import com.example.github_api.R
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityMainBinding
