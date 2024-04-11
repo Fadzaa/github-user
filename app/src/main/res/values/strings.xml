@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">github_api</string>
+    <string name="greeting">Hello There,</string>
+    <string name="followings">Followings (%1$d)</string>
+    <string name="followers">Followers (%1$d)</string>
+    <string name="search_user">Search User...</string>
+    <string name="detail_user">Detail User</string>
+    <string name="public_repo">Public Repo (%1$d)</string>
+    <string name="starred_repo">Starred Repo</string>
+    <string name="separator">-</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

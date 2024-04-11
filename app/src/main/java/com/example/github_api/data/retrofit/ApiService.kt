@@ -8,9 +8,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("search/users/{username}")
+    @GET("search/users")
     fun searchUsers (
-        @Path("username") username: String
+        @Query("q") query: String
     ) : Call<SearchResponse>
 
     @GET("users/{username}")
