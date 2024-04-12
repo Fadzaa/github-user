@@ -2,12 +2,6 @@ package com.example.github_api.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RepositoryUserResponse(
-
-	@field:SerializedName("RepositoryUserResponse")
-	val repositoryUserResponse: List<RepositoryUserResponseItem>
-)
-
 data class Owner(
 
 	@field:SerializedName("gists_url")
@@ -188,7 +182,7 @@ data class RepositoryUserResponseItem(
 	val openIssuesCount: Int,
 
 	@field:SerializedName("description")
-	val description: Any,
+	val description: String,
 
 	@field:SerializedName("created_at")
 	val createdAt: String,
