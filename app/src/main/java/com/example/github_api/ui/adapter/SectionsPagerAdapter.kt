@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.ui.fragment.FollowFragment
+import com.example.github_api.ui.fragment.FollowType
 
 class SectionsPagerAdapter(
     activity: AppCompatActivity
@@ -13,23 +14,19 @@ class SectionsPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
-        val bundle = Bundle()
         when(position){
             0 -> {
-                fragment = FollowFragment()
-//                bundle.putSerializable(FollowFragment.ARG_USER_LIST, followers as ArrayList)
+                fragment = FollowFragment.newInstance(FollowType.FOLLOWERS)
             }
-//            1 -> {
-//                fragment = FollowFragment()
-//                bundle.putSerializable(FollowFragment.ARG_USER_LIST, following as ArrayList)
-//            }
+            1 -> {
+                fragment = FollowFragment.newInstance(FollowType.FOLLOWING)
+            }
         }
-        fragment?.arguments = bundle
         return fragment as Fragment
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return 2
     }
 
 }

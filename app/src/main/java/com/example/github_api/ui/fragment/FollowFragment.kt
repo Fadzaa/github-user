@@ -1,10 +1,12 @@
 package com.example.github_api.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,22 +17,30 @@ import com.example.github_api.ui.adapter.ListUserAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 
 
-class FollowFragment : Fragment() {
+class FollowFragment() : Fragment() {
+    private lateinit var followType: FollowType
 
     private var _binding: FragmentFollowBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var userList: List<DetailUserResponse>
     private val detailViewModel by activityViewModels<DetailViewModel>()
 
-//    companion object {
-//        const val ARG_USER_LIST = "user_list"
-//    }
+    companion object {
+        private const val ARG_FOLLOW_TYPE = "arg_follow_type"
+
+        @JvmStatic
+        fun newInstance(followType: FollowType) = FollowFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(ARG_FOLLOW_TYPE, followType)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            userList = it.getSerializable(ARG_USER_LIST) as List<DetailUserResponse>
-//        }
+        arguments?.let {
+            followType = it.getSerializable(ARG_FOLLOW_TYPE) as FollowType
+        }
     }
 
     override fun onCreateView(
@@ -48,11 +58,26 @@ class FollowFragment : Fragment() {
         binding.rvFollow.setHasFixedSize(true)
         binding.rvFollow.layoutManager = LinearLayoutManager(requireContext())
 
-        detailViewModel.listDetailFollowings.observe(viewLifecycleOwner){
-            val listUserAdapter = ListUserAdapter(it)
-            binding.rvFollow.adapter = listUserAdapter
+        when (followType) {
+            FollowType.FOLLOWERS -> {
+                detailViewModel.listDetailFollowers.observe(viewLifecycleOwner) {
+                    val adapter = ListUserAdapter(it)
+                    binding.rvFollow.adapter = adapter
+                }
+            }
+            FollowType.FOLLOWING -> {
+                detailViewModel.listDetailFollowings.observe(viewLifecycleOwner) {
+                    val adapter = ListUserAdapter(it)
+                    binding.rvFollow.adapter = adapter
+                }
+            }
         }
 
     }
 
+}
+
+enum class FollowType {
+    FOLLOWERS,
+    FOLLOWING
 }

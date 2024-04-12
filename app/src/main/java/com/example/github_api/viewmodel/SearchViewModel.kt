@@ -13,9 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SearchViewModel : ViewModel() {
-    private val _listUsers = MutableLiveData<List<ItemsItem>>()
-    val listUsers: LiveData<List<ItemsItem>> = _listUsers
-
     private val _listDetailUsers = MutableLiveData<List<DetailUserResponse>>(emptyList())
     val listDetailUsers: LiveData<List<DetailUserResponse>> = _listDetailUsers
 

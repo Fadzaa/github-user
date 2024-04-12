@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
-    private val detailViewModel by viewModels<DetailViewModel>()
+    private val detailViewModel: DetailViewModel by viewModels()
 
     companion object{
         const val EXTRA_USER =  "extra_user"
@@ -26,9 +26,12 @@ class DetailUserActivity : AppCompatActivity() {
 
         val user  = intent.getSerializableExtra(EXTRA_USER) as DetailUserResponse
 
-        setUser(user)
+        detailViewModel.setUser(user)
 
-        setViewPager(user)
+        detailViewModel.user.observe(this) {
+            setUser(it)
+            setViewPager(it)
+        }
 
         with(binding) {
             ivArrowBack.setOnClickListener {
@@ -54,9 +57,6 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun setViewPager(user: DetailUserResponse) {
-//        val followersList = detailViewModel.listDetailFollowers.value ?: emptyList()
-//        val followingList = detailViewModel.listDetailFollowings.value ?: emptyList()
-
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         binding.viewPager.adapter = sectionsPagerAdapter
 
@@ -69,7 +69,5 @@ class DetailUserActivity : AppCompatActivity() {
                 else -> followings
             }
         }.attach()
-
-
     }
 }
