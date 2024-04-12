@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel (private val username: String) : ViewModel() {
+class DetailViewModel (username: String) : ViewModel() {
     private val _listDetailFollowers = MutableLiveData<List<DetailUserResponse>>(emptyList())
     val listDetailFollowers: LiveData<List<DetailUserResponse>> = _listDetailFollowers
 
@@ -126,15 +126,5 @@ class DetailViewModel (private val username: String) : ViewModel() {
 
     fun setUser(userData: DetailUserResponse) {
         _user.value = userData
-    }
-}
-
-class DetailViewModelFactory(private val username: String) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return DetailViewModel(username) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

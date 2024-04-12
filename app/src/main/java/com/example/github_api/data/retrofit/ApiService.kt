@@ -2,7 +2,7 @@ package com.example.github_api.data.retrofit
 
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.data.response.ListFollowResponseItem
-import com.example.github_api.data.response.RepositoryUserResponse
+import com.example.github_api.data.response.RepositoryUserResponseItem
 import com.example.github_api.data.response.SearchResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -34,12 +34,12 @@ interface ApiService {
     @GET("/users/{username}/repos")
     fun getUserRepository (
         @Path("username") username: String
-    ) : Call<RepositoryUserResponse>
+    ) : Call<List<RepositoryUserResponseItem>>
 
     @GET("/users/{username}/starred")
     fun getUserStarredRepository (
         @Path("username") username: String
-    ) : Call<RepositoryUserResponse>
+    ) : Call<List<RepositoryUserResponseItem>>
 
 
 

@@ -1,5 +1,6 @@
 package com.example.github_api.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,7 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.github_api.R
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
-import com.example.github_api.ui.adapter.SectionsPagerAdapter
+import com.example.github_api.ui.adapter.FollowPagerAdapter
+import com.example.github_api.ui.adapter.RepoPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 import com.example.github_api.viewmodel.DetailViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
@@ -28,11 +30,12 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val user  = intent.getSerializableExtra(EXTRA_USER) as DetailUserResponse
+        val user  = intent.getSerializableExtra(EXTRA_USER) as? DetailUserResponse
 
-        username = user.login
-
-        detailViewModel.setUser(user)
+        if (user != null) {
+            username = user.login
+            detailViewModel.setUser(user)
+        }
 
         detailViewModel.user.observe(this) {
             setUser(it)
@@ -42,6 +45,12 @@ class DetailUserActivity : AppCompatActivity() {
         with(binding) {
             ivArrowBack.setOnClickListener {
                 finish()
+            }
+
+            tvPublicRepo.setOnClickListener {
+                val intent = Intent(this@DetailUserActivity, RepositoryActivity::class.java)
+                intent.putExtra(RepositoryActivity.EXTRA_USERNAME, username)
+                startActivity(intent)
             }
         }
 
@@ -63,8 +72,8 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun setViewPager(user: DetailUserResponse) {
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        binding.viewPager.adapter = sectionsPagerAdapter
+        val followPagerAdapter = FollowPagerAdapter(this)
+        binding.viewPager.adapter = followPagerAdapter
 
         val followers = resources.getString(R.string.followers, user.followers)
         val followings = resources.getString(R.string.followings, user.following)
