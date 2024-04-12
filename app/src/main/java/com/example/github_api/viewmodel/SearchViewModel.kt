@@ -27,7 +27,8 @@ class SearchViewModel : ViewModel() {
         searchUsers("a")
     }
 
-    private fun searchUsers(query: String) {
+    fun searchUsers(query: String) {
+        _listDetailUsers.value = emptyList()
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().searchUsers(query)
@@ -37,6 +38,8 @@ class SearchViewModel : ViewModel() {
                 override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                     if (response.isSuccessful) {
                         val users = response.body()?.items
+                        Log.d(TAG, "onResponse: $users")
+                        Log.d(TAG, "size: ${users?.size}")
 
                         if (users != null) {
                             for (user in users) {

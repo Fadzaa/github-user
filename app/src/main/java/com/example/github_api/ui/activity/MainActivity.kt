@@ -3,6 +3,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,11 +48,15 @@ class MainActivity : AppCompatActivity() {
             searchView.setupWithSearchBar(searchBar)
             searchView
                 .editText
-                .setOnEditorActionListener{ textView, actionId, event ->
-                    searchBar.text = searchView.text
-                    searchView.hide()
-                    Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT).show()
-                    false
+                .setOnEditorActionListener{ _, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        searchBar.text = searchView.text
+                        searchView.hide()
+                        searchViewModel.searchUsers(searchView.text.toString())
+                        true // Return true as we have handled the action
+                    } else {
+                        false
+                    }
                 }
         }
 
