@@ -9,11 +9,15 @@ import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
 import com.example.github_api.ui.adapter.SectionsPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
+import com.example.github_api.viewmodel.DetailViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
-    private val detailViewModel: DetailViewModel by viewModels()
+    private lateinit var username: String
+    private val detailViewModel: DetailViewModel by viewModels {
+        DetailViewModelFactory(username)
+    }
 
     companion object{
         const val EXTRA_USER =  "extra_user"
@@ -25,6 +29,8 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val user  = intent.getSerializableExtra(EXTRA_USER) as DetailUserResponse
+
+        username = user.login
 
         detailViewModel.setUser(user)
 

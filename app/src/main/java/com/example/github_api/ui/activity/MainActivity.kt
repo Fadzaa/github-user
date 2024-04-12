@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUsers.setHasFixedSize(true)
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
-
+   
         mainViewModel.user.observe(this) {
             setCurrentUser(it)
         }
