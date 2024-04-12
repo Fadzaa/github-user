@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.data.response.ListFollowResponseItem
 import com.example.github_api.data.retrofit.ApiConfig
@@ -11,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel () : ViewModel() {
+class DetailViewModel (private val username: String) : ViewModel() {
     private val _listDetailFollowers = MutableLiveData<List<DetailUserResponse>>(emptyList())
     val listDetailFollowers: LiveData<List<DetailUserResponse>> = _listDetailFollowers
 
@@ -29,8 +30,8 @@ class DetailViewModel () : ViewModel() {
     }
 
     init {
-        getListFollowers("Fadzaa")
-        getListFollowings("Fadzaa")
+        getListFollowers(username)
+        getListFollowings(username)
     }
 
     private fun getListFollowers(username: String) {
@@ -125,5 +126,15 @@ class DetailViewModel () : ViewModel() {
 
     fun setUser(userData: DetailUserResponse) {
         _user.value = userData
+    }
+}
+
+class DetailViewModelFactory(private val username: String) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return DetailViewModel(username) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
