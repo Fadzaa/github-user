@@ -1,12 +1,11 @@
 package com.example.github_api.ui.activity
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.MediatorLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.github_api.R
@@ -30,46 +29,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rvUsers.setHasFixedSize(true)
-        binding.rvUsers.layoutManager = LinearLayoutManager(this)
-   
         mainViewModel.user.observe(this) {
             setCurrentUser(it)
-        }
-
-        searchViewModel.listDetailUsers.observe(this) {
-            setRvUser(it)
         }
 
         mainViewModel.isLoading.observe(this) {
             setHeadingLoading(it)
         }
 
+        searchViewModel.listDetailUsers.observe(this) {
+            setRvUser(it)
+        }
+
         searchViewModel.isLoading.observe(this) {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            setLoading(it)
         }
 
-        binding.ivArrow.setOnClickListener {
-            val intent = Intent(this, DetailUserActivity::class.java)
-            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
-            startActivity(intent)
-        }
+        searchUser()
 
-        with(binding) {
-            searchView.setupWithSearchBar(searchBar)
-            searchView
-                .editText
-                .setOnEditorActionListener{ _, actionId, _ ->
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                        searchBar.text = searchView.text
-                        searchView.hide()
-                        searchViewModel.searchUsers(searchView.text.toString())
-                        true // Return true as we have handled the action
-                    } else {
-                        false
-                    }
-                }
-        }
+        navigateToDetailUser()
+
     }
 
     private fun setCurrentUser(detailUserResponse: DetailUserResponse) {
@@ -87,8 +66,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRvUser(listUser: List<DetailUserResponse>) {
-        listUserAdapter = ListUserAdapter(listUser)
-        binding.rvUsers.adapter = listUserAdapter
+        with(binding) {
+            rvUsers.setHasFixedSize(true)
+            rvUsers.layoutManager = LinearLayoutManager(this@MainActivity)
+            listUserAdapter = ListUserAdapter(listUser)
+            rvUsers.adapter = listUserAdapter
+        }
     }
 
     private fun setHeadingLoading(isLoading: Boolean) {
@@ -99,6 +82,37 @@ class MainActivity : AppCompatActivity() {
             civCurrentUser.visibility = if (isLoading) View.GONE else View.VISIBLE
             clAdditionalDetail.visibility = if (isLoading) View.GONE else View.VISIBLE
             ivArrow.visibility = if (isLoading) View.GONE else View.VISIBLE
+        }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
+    }
+
+    private fun searchUser() {
+        with(binding) {
+            searchView.setupWithSearchBar(searchBar)
+            searchView
+                .editText
+                .setOnEditorActionListener{ _, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        searchBar.text = searchView.text
+                        searchView.hide()
+                        searchViewModel.searchUsers(searchView.text.toString())
+                        true
+                    } else {
+                        false
+                    }
+                }
+        }
+    }
+
+    private fun navigateToDetailUser() {
+        binding.ivArrow.setOnClickListener {
+            val intent = Intent(this, DetailUserActivity::class.java)
+            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+            startActivity(intent)
         }
     }
 }

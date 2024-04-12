@@ -38,7 +38,7 @@ class RepoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            repoType = it.getSerializable(RepoFragment.ARG_REPO_TYPE) as RepoType
+            repoType = it.getSerializable(ARG_REPO_TYPE) as RepoType
             username = it.getString("username").toString()
         }
     }

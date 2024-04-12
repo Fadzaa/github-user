@@ -17,7 +17,6 @@ class FollowFragment() : Fragment() {
     private lateinit var followType: FollowType
 
     private var _binding: FragmentFollowBinding? = null
-    private val binding get() = _binding!!
 
     private val detailViewModel by activityViewModels<DetailViewModel>()
 

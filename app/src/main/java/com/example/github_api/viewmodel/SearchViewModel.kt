@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.github_api.data.response.DetailUserResponse
-import com.example.github_api.data.response.ItemsItem
 import com.example.github_api.data.response.SearchResponse
 import com.example.github_api.data.retrofit.ApiConfig
 import retrofit2.Call
@@ -42,7 +41,6 @@ class SearchViewModel : ViewModel() {
                             for (user in users) {
                                 getDetailUser(user.login)
                             }
-
                         }
                         _isLoading.value = false
                     } else {

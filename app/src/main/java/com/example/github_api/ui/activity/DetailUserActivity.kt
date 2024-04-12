@@ -9,7 +9,6 @@ import com.example.github_api.R
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
 import com.example.github_api.ui.adapter.FollowPagerAdapter
-import com.example.github_api.ui.adapter.RepoPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 import com.example.github_api.viewmodel.DetailViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,6 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
     private lateinit var username: String
+
     private val detailViewModel: DetailViewModel by viewModels {
         DetailViewModelFactory(username)
     }
@@ -48,9 +48,11 @@ class DetailUserActivity : AppCompatActivity() {
             }
 
             tvPublicRepo.setOnClickListener {
-                val intent = Intent(this@DetailUserActivity, RepositoryActivity::class.java)
-                intent.putExtra(RepositoryActivity.EXTRA_USERNAME, username)
-                startActivity(intent)
+                navigateToRepository()
+            }
+
+            ivArrowGreen.setOnClickListener {
+                navigateToRepository()
             }
         }
 
@@ -84,5 +86,11 @@ class DetailUserActivity : AppCompatActivity() {
                 else -> followings
             }
         }.attach()
+    }
+
+    private fun navigateToRepository() {
+        val intent = Intent(this, RepositoryActivity::class.java)
+        intent.putExtra(RepositoryActivity.EXTRA_USERNAME, username)
+        startActivity(intent)
     }
 }

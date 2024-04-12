@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.github_api.data.response.DetailUserResponse
 import com.example.github_api.data.response.ListFollowResponseItem
 import com.example.github_api.data.retrofit.ApiConfig
@@ -40,7 +39,7 @@ class DetailViewModel (username: String) : ViewModel() {
 
         client.enqueue(
             object : Callback<List<ListFollowResponseItem>> {
-                override fun onResponse(call: Call<List<ListFollowResponseItem>>, response: Response<List<ListFollowResponseItem>>, ) {
+                override fun onResponse(call: Call<List<ListFollowResponseItem>>, response: Response<List<ListFollowResponseItem>>) {
                     if (response.isSuccessful) {
                         val listFollowers  = response.body()
                         if (listFollowers != null) {
