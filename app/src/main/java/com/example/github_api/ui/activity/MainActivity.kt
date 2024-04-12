@@ -6,6 +6,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.MediatorLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.github_api.R
@@ -41,7 +42,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.isLoading.observe(this) {
+            setHeadingLoading(it)
+        }
+
+        searchViewModel.isLoading.observe(this) {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
+        binding.ivArrow.setOnClickListener {
+            val intent = Intent(this, DetailUserActivity::class.java)
+            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+            startActivity(intent)
         }
 
         with(binding) {
@@ -58,12 +69,6 @@ class MainActivity : AppCompatActivity() {
                         false
                     }
                 }
-        }
-
-        binding.ivArrow.setOnClickListener {
-            val intent = Intent(this, DetailUserActivity::class.java)
-            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
-            startActivity(intent)
         }
     }
 
@@ -86,5 +91,14 @@ class MainActivity : AppCompatActivity() {
         binding.rvUsers.adapter = listUserAdapter
     }
 
-
+    private fun setHeadingLoading(isLoading: Boolean) {
+        with(binding) {
+            progressBarHeading.visibility = if (isLoading) View.VISIBLE else View.GONE
+            tvGreeting.visibility = if (isLoading) View.GONE else View.VISIBLE
+            tvUserFullname.visibility = if (isLoading) View.GONE else View.VISIBLE
+            civCurrentUser.visibility = if (isLoading) View.GONE else View.VISIBLE
+            clAdditionalDetail.visibility = if (isLoading) View.GONE else View.VISIBLE
+            ivArrow.visibility = if (isLoading) View.GONE else View.VISIBLE
+        }
+    }
 }

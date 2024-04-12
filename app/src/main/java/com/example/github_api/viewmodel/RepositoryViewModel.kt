@@ -31,11 +31,13 @@ class RepositoryViewModel(username: String) : ViewModel() {
     }
 
     private fun getListRepository(username: String) {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUserRepository(username)
 
         client.enqueue(
             object : Callback<List<RepositoryUserResponseItem>> {
                 override fun onResponse(call: Call<List<RepositoryUserResponseItem>>, response: Response<List<RepositoryUserResponseItem>>) {
+                    _isLoading.value = false
                     if (response.isSuccessful) {
                         _listRepository.value = response.body()
                     } else {
@@ -44,6 +46,7 @@ class RepositoryViewModel(username: String) : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<List<RepositoryUserResponseItem>>, t: Throwable) {
+                    _isLoading.value = false
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                 }
             }
@@ -51,11 +54,13 @@ class RepositoryViewModel(username: String) : ViewModel() {
     }
 
     private fun getListStarredRepository(username: String) {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUserStarredRepository(username)
 
         client.enqueue(
             object : Callback<List<RepositoryUserResponseItem>> {
                 override fun onResponse(call: Call<List<RepositoryUserResponseItem>>, response: Response<List<RepositoryUserResponseItem>>) {
+                    _isLoading.value = false
                     if (response.isSuccessful) {
                         _listStarredRepository  .value = response.body()
                     } else {
@@ -64,6 +69,7 @@ class RepositoryViewModel(username: String) : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<List<RepositoryUserResponseItem>>, t: Throwable) {
+                    _isLoading.value = false
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                 }
             }

@@ -76,6 +76,10 @@ class RepoFragment : Fragment() {
             }
         }
 
+        repoViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
     }
 }
 

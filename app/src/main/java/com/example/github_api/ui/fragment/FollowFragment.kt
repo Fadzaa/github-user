@@ -69,6 +69,10 @@ class FollowFragment() : Fragment() {
             }
         }
 
+        detailViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
     }
 
 }

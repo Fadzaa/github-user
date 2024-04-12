@@ -38,9 +38,6 @@ class SearchViewModel : ViewModel() {
                 override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                     if (response.isSuccessful) {
                         val users = response.body()?.items
-                        Log.d(TAG, "onResponse: $users")
-                        Log.d(TAG, "size: ${users?.size}")
-
                         if (users != null) {
                             for (user in users) {
                                 getDetailUser(user.login)
@@ -49,6 +46,7 @@ class SearchViewModel : ViewModel() {
                         }
                         _isLoading.value = false
                     } else {
+                        _isLoading.value = false
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
@@ -74,7 +72,6 @@ class SearchViewModel : ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         val userDetail = response.body()
-                        Log.d(TAG, "onResponse: $userDetail")
                         if (userDetail != null) {
                             _listDetailUsers.value = _listDetailUsers.value?.plus(userDetail)
                         }

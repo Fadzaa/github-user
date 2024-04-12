@@ -50,6 +50,7 @@ class DetailViewModel (username: String) : ViewModel() {
                         }
                         _isLoading.value = false
                     } else {
+                        _isLoading.value = false
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
@@ -83,6 +84,7 @@ class DetailViewModel (username: String) : ViewModel() {
                         }
                         _isLoading.value = false
                     } else {
+                        _isLoading.value = false
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
