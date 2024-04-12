@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RepositoryViewModel() : ViewModel() {
+class RepositoryViewModel(username: String) : ViewModel() {
     private val _listRepository = MutableLiveData<List<RepositoryUserResponseItem>>(emptyList())
     val listRepository : LiveData<List<RepositoryUserResponseItem>> = _listRepository
 
@@ -21,14 +21,13 @@ class RepositoryViewModel() : ViewModel() {
     val isLoading : LiveData<Boolean> = _isLoading
 
 
-
     companion object {
         private const val TAG = "RepositoryViewModel"
     }
 
     init {
-        getListRepository("Fadzaa")
-        getListStarredRepository("Fadzaa")
+        getListRepository(username)
+        getListStarredRepository(username)
     }
 
     private fun getListRepository(username: String) {
@@ -58,7 +57,7 @@ class RepositoryViewModel() : ViewModel() {
             object : Callback<List<RepositoryUserResponseItem>> {
                 override fun onResponse(call: Call<List<RepositoryUserResponseItem>>, response: Response<List<RepositoryUserResponseItem>>) {
                     if (response.isSuccessful) {
-                        _listStarredRepository.value = response.body()
+                        _listStarredRepository  .value = response.body()
                     } else {
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
