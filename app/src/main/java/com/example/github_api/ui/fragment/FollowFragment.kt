@@ -17,7 +17,6 @@ class FollowFragment() : Fragment() {
     private lateinit var followType: FollowType
 
     private var _binding: FragmentFollowBinding? = null
-    private val binding get() = _binding!!
 
     private val detailViewModel by activityViewModels<DetailViewModel>()
 
@@ -67,6 +66,10 @@ class FollowFragment() : Fragment() {
                     binding.rvFollow.adapter = adapter
                 }
             }
+        }
+
+        detailViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
     }

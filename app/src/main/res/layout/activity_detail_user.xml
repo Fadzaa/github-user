@@ -159,13 +159,25 @@
 
             />
 
+        <ImageView
+            android:id="@+id/ivArrowGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_green"
+            app:layout_constraintStart_toEndOf="@id/tvPublicRepo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="3dp"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tvBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Body"
+        style="@style/Body.Follow"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/clFollow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -189,6 +201,7 @@
             android:src="@drawable/ic_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
@@ -196,7 +209,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Label"
-            android:text="Kudus, Indonesia"
             app:layout_constraintStart_toEndOf="@id/ivLocation"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="5dp"
@@ -210,6 +222,7 @@
             android:src="@drawable/ic_company"
             app:layout_constraintStart_toEndOf="@id/tvLocation"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="10dp"
             />
 
@@ -218,7 +231,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Label"
-            android:text="SMK Raden Umar Said"
             app:layout_constraintStart_toEndOf="@id/ivCompany"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="5dp"

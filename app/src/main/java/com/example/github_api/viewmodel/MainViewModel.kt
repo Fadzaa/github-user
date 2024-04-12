@@ -25,7 +25,6 @@ class MainViewModel : ViewModel() {
         getMyUsers()
     }
 
-
     private fun getMyUsers() {
         _isLoading.value = true
 
@@ -53,6 +52,5 @@ class MainViewModel : ViewModel() {
             }
         )
     }
-
 
 }

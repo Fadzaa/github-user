@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="10dp"
+    >
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clCard"
@@ -14,8 +16,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civProfileUser"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
@@ -35,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Body"
-                android:text="Fattah Anggit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
@@ -45,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Body.Follow"
-                android:text="(Fadzaa)"
                 app:layout_constraintStart_toEndOf="@id/tvName"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="3dp"
@@ -56,7 +56,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/LabelSmall"
-                android:text="Software Engineer From SMK Raden Umar Said"
+                android:maxLines="1"
+                android:ellipsize="end"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvName"
 
@@ -68,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_location"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLocation"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
 
@@ -76,7 +78,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Label"
-                android:text="Kudus, Indonesia"
                 app:layout_constraintStart_toEndOf="@id/ivLocation"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="5dp"
@@ -89,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_company"
                 app:layout_constraintStart_toEndOf="@id/tvLocation"
+                app:layout_constraintTop_toTopOf="@id/tvCompany"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="10dp"
                 />
@@ -98,7 +100,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Label"
-                android:text="SMK Raden Umar Said"
                 app:layout_constraintStart_toEndOf="@id/ivCompany"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="5dp"

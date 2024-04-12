@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.github_api.R
 import com.example.github_api.data.response.RepositoryUserResponseItem
 import com.example.github_api.databinding.ItemRepoVerticalBinding
+import com.example.github_api.helper.LanguageColors
 
 class ListRepoAdapter(private val listRepo: List<RepositoryUserResponseItem>) : RecyclerView.Adapter<ListRepoAdapter.ListViewHolder>() {
 
@@ -20,6 +21,10 @@ class ListRepoAdapter(private val listRepo: List<RepositoryUserResponseItem>) : 
                 tvFork.text = repo.forksCount.toString()
                 tvStar.text = repo.stargazersCount.toString()
                 tvLanguage.text = repo.language
+
+                if (repo.description != null) {
+                    tvDescription.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -40,4 +45,6 @@ class ListRepoAdapter(private val listRepo: List<RepositoryUserResponseItem>) : 
     override fun getItemCount(): Int {
         return listRepo.size
     }
+
+
 }

@@ -11,21 +11,26 @@ import com.example.github_api.R
 import com.example.github_api.databinding.FragmentRepoBinding
 import com.example.github_api.ui.adapter.ListRepoAdapter
 import com.example.github_api.viewmodel.RepositoryViewModel
+import com.example.github_api.viewmodel.RepositoryViewModelFactory
 
 
 class RepoFragment : Fragment() {
     private lateinit var repoType: RepoType
+    private lateinit var  username: String
     private var _binding: FragmentRepoBinding? = null
 
-    private val repoViewModel by activityViewModels<RepositoryViewModel>()
+    private val repoViewModel by activityViewModels<RepositoryViewModel>{
+        RepositoryViewModelFactory(username)
+    }
 
     companion object {
         private const val ARG_REPO_TYPE = "arg_repo_type"
 
         @JvmStatic
-        fun newInstance(repoType: RepoType) = RepoFragment().apply {
+        fun newInstance(repoType: RepoType, username: String) = RepoFragment().apply {
             arguments = Bundle().apply {
                 putSerializable(ARG_REPO_TYPE, repoType)
+                putString("username", username)
             }
         }
     }
@@ -33,7 +38,8 @@ class RepoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            repoType = it.getSerializable(RepoFragment.ARG_REPO_TYPE) as RepoType
+            repoType = it.getSerializable(ARG_REPO_TYPE) as RepoType
+            username = it.getString("username").toString()
         }
     }
 
@@ -68,6 +74,10 @@ class RepoFragment : Fragment() {
                     binding.rvRepo.adapter = adapter
                 }
             }
+        }
+
+        repoViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
     }

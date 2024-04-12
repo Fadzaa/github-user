@@ -22,7 +22,10 @@ class ListUserAdapter(private var listUser: List<DetailUserResponse>) : Recycler
                     .load(user.avatarUrl)
                     .into(civProfileUser)
 
-                tvUsername.text = user.login
+                tvUsername.text = itemView.context.getString(
+                    R.string.username,
+                    user.login
+                )
                 tvBio.text = user.bio
                 tvCompany.text =  user.company
                 tvLocation.text = user.location

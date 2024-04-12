@@ -6,15 +6,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.github_api.ui.fragment.RepoFragment
 import com.example.github_api.ui.fragment.RepoType
 
-class RepoPagerAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
+class RepoPagerAdapter(activity: AppCompatActivity, private val username: String): FragmentStateAdapter(activity) {
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when(position){
             0 -> {
-                fragment = RepoFragment.newInstance(RepoType.PUBLIC)
+                fragment = RepoFragment.newInstance(RepoType.PUBLIC, username)
             }
             1 -> {
-                fragment = RepoFragment.newInstance(RepoType.STARRED)
+                fragment = RepoFragment.newInstance(RepoType.STARRED, username)
             }
         }
         return fragment as Fragment
