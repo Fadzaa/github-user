@@ -59,18 +59,26 @@ class FollowFragment() : Fragment() {
                     val adapter = ListUserAdapter(it)
                     binding.rvFollow.adapter = adapter
                 }
+
+                detailViewModel.isLoadingFollowers.observe(viewLifecycleOwner) {
+                    binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+                }
             }
             FollowType.FOLLOWING -> {
                 detailViewModel.listDetailFollowings.observe(viewLifecycleOwner) {
                     val adapter = ListUserAdapter(it)
                     binding.rvFollow.adapter = adapter
                 }
+
+                detailViewModel.isLoadingFollowing.observe(viewLifecycleOwner) {
+                    binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+                }
             }
         }
 
-        detailViewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        }
+
+
+
 
     }
 

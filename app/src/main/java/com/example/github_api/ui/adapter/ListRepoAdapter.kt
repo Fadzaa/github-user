@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.github_api.R
 import com.example.github_api.data.response.RepositoryUserResponseItem
 import com.example.github_api.databinding.ItemRepoVerticalBinding
-import com.example.github_api.helper.LanguageColors
+
 
 class ListRepoAdapter(private val listRepo: List<RepositoryUserResponseItem>) : RecyclerView.Adapter<ListRepoAdapter.ListViewHolder>() {
 

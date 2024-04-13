@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity() {
             tvGreeting.visibility = if (isLoading) View.GONE else View.VISIBLE
             tvUserFullname.visibility = if (isLoading) View.GONE else View.VISIBLE
             civCurrentUser.visibility = if (isLoading) View.GONE else View.VISIBLE
-            clAdditionalDetail.visibility = if (isLoading) View.GONE else View.VISIBLE
             ivArrow.visibility = if (isLoading) View.GONE else View.VISIBLE
         }
     }
