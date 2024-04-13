@@ -13,7 +13,7 @@ import com.example.github_api.ui.adapter.ListUserAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 
 
-class FollowFragment() : Fragment() {
+class FollowFragment : Fragment() {
     private lateinit var followType: FollowType
 
     private var _binding: FragmentFollowBinding? = null
