@@ -5,117 +5,97 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="10dp"
     >
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civProfileUser"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civProfileUser"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Body"
+        app:layout_constraintStart_toEndOf="@id/civProfileUser"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@id/civProfileUser"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:paddingVertical="3dp"
-            android:layout_marginStart="15dp">
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Body.Follow"
+        app:layout_constraintStart_toEndOf="@id/tvName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="3dp"
+        />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Body"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+    <TextView
+        android:id="@+id/tvBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LabelSmall"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        android:layout_marginTop="3dp"
+        />
 
-            <TextView
-                android:id="@+id/tvUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Body.Follow"
-                app:layout_constraintStart_toEndOf="@id/tvName"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="3dp"
-                />
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_location"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintBottom_toBottomOf="@id/tvLocation"
+        app:layout_constraintTop_toTopOf="@id/tvLocation"
+        />
 
-            <TextView
-                android:id="@+id/tvBio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/LabelSmall"
-                android:maxLines="1"
-                android:ellipsize="end"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName"
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Label"
+        app:layout_constraintStart_toEndOf="@id/ivLocation"
+        app:layout_constraintBottom_toBottomOf="@id/civProfileUser"
+        android:layout_marginStart="5dp"
 
-                />
+        />
 
-            <ImageView
-                android:id="@+id/ivLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvLocation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+    <ImageView
+        android:id="@+id/ivCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_company"
+        app:layout_constraintStart_toEndOf="@id/tvLocation"
+        app:layout_constraintBottom_toBottomOf="@id/ivLocation"
+        app:layout_constraintTop_toTopOf="@id/ivLocation"
+        android:layout_marginStart="10dp"
+        />
 
-            <TextView
-                android:id="@+id/tvLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Label"
-                app:layout_constraintStart_toEndOf="@id/ivLocation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="5dp"
+    <TextView
+        android:id="@+id/tvCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Label"
+        app:layout_constraintStart_toEndOf="@id/ivCompany"
+        app:layout_constraintBottom_toBottomOf="@id/tvLocation"
+        app:layout_constraintTop_toTopOf="@id/tvLocation"
+        android:layout_marginStart="5dp"
 
-                />
-
-            <ImageView
-                android:id="@+id/ivCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_company"
-                app:layout_constraintStart_toEndOf="@id/tvLocation"
-                app:layout_constraintTop_toTopOf="@id/tvCompany"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="10dp"
-                />
-
-            <TextView
-                android:id="@+id/tvCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Label"
-                app:layout_constraintStart_toEndOf="@id/ivCompany"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="5dp"
-
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        />
 
     <View
         android:id="@+id/vDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/container_color"
-        app:layout_constraintTop_toBottomOf="@id/clCard"
+        app:layout_constraintTop_toBottomOf="@id/civProfileUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"

@@ -3,6 +3,7 @@ package com.example.github_api.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.example.github_api.R
@@ -33,6 +34,7 @@ class DetailUserActivity : AppCompatActivity() {
         val user  = intent.getSerializableExtra(EXTRA_USER) as? DetailUserResponse
 
         if (user != null) {
+            binding.progressBarHeading?.visibility = View.VISIBLE
             username = user.login
             detailViewModel.setUser(user)
         }
@@ -40,6 +42,7 @@ class DetailUserActivity : AppCompatActivity() {
         detailViewModel.user.observe(this) {
             setUser(it)
             setViewPager(it)
+            binding.progressBarHeading?.visibility = View.GONE
         }
 
         with(binding) {

@@ -13,7 +13,7 @@ import com.example.github_api.ui.adapter.ListUserAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 
 
-class FollowFragment() : Fragment() {
+class FollowFragment : Fragment() {
     private lateinit var followType: FollowType
 
     private var _binding: FragmentFollowBinding? = null
@@ -59,18 +59,26 @@ class FollowFragment() : Fragment() {
                     val adapter = ListUserAdapter(it)
                     binding.rvFollow.adapter = adapter
                 }
+
+                detailViewModel.isLoadingFollowers.observe(viewLifecycleOwner) {
+                    binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+                }
             }
             FollowType.FOLLOWING -> {
                 detailViewModel.listDetailFollowings.observe(viewLifecycleOwner) {
                     val adapter = ListUserAdapter(it)
                     binding.rvFollow.adapter = adapter
                 }
+
+                detailViewModel.isLoadingFollowing.observe(viewLifecycleOwner) {
+                    binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+                }
             }
         }
 
-        detailViewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        }
+
+
+
 
     }
 

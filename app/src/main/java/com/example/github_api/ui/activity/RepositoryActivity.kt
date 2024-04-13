@@ -2,12 +2,9 @@ package com.example.github_api.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
 import com.example.github_api.R
 import com.example.github_api.databinding.ActivityRepositoryBinding
 import com.example.github_api.ui.adapter.RepoPagerAdapter
-import com.example.github_api.viewmodel.RepositoryViewModel
-import com.example.github_api.viewmodel.RepositoryViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RepositoryActivity : AppCompatActivity() {

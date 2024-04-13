@@ -6,109 +6,88 @@
     android:layout_marginBottom="5dp"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clCard"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingVertical="3dp">
+        />
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Body"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        android:layout_marginTop="3dp"
+        android:visibility="gone"
+        />
 
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
-            android:layout_marginTop="3dp"
-            android:visibility="gone"
-            />
+    <TextView
+        android:id="@+id/tvLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Body.Follow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+        android:layout_marginTop="8dp"
+        />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDescription"
-            android:layout_marginTop="15dp"
-            >
+    <ImageView
+        android:id="@+id/ivFork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_fork"
+        app:layout_constraintStart_toEndOf="@id/tvLanguage"
+        app:layout_constraintTop_toTopOf="@id/tvLanguage"
+        app:layout_constraintBottom_toBottomOf="@id/tvLanguage"
+        android:layout_marginStart="10dp"
+        />
 
-            <TextView
-                android:id="@+id/tvLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Body.Follow"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+    <TextView
+        android:id="@+id/tvFork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LabelSmall"
+        app:layout_constraintStart_toEndOf="@id/ivFork"
+        app:layout_constraintTop_toTopOf="@id/tvLanguage"
+        app:layout_constraintBottom_toBottomOf="@id/tvLanguage"
+        android:layout_marginStart="5dp"
 
-            <ImageView
-                android:id="@+id/ivFork"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_fork"
-                app:layout_constraintStart_toEndOf="@id/tvLanguage"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="10dp"
-                />
+        />
 
-            <TextView
-                android:id="@+id/tvFork"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/LabelSmall"
-                app:layout_constraintStart_toEndOf="@id/ivFork"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="5dp"
+    <ImageView
+        android:id="@+id/ivStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_star"
+        app:layout_constraintStart_toEndOf="@id/tvFork"
+        app:layout_constraintTop_toTopOf="@id/tvLanguage"
+        app:layout_constraintBottom_toBottomOf="@id/tvLanguage"
+        android:layout_marginStart="10dp"
+        />
 
-                />
+    <TextView
+        android:id="@+id/tvStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LabelSmall"
+        app:layout_constraintStart_toEndOf="@id/ivStar"
+        app:layout_constraintTop_toTopOf="@id/tvLanguage"
+        app:layout_constraintBottom_toBottomOf="@id/tvLanguage"
+        android:layout_marginStart="5dp"
 
-            <ImageView
-                android:id="@+id/ivStar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
-                app:layout_constraintStart_toEndOf="@id/tvFork"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="10dp"
-                />
-
-            <TextView
-                android:id="@+id/tvStar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/LabelSmall"
-                app:layout_constraintStart_toEndOf="@id/ivStar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="5dp"
-
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        />
 
     <View
         android:id="@+id/vDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/container_color"
-        app:layout_constraintTop_toBottomOf="@id/clCard"
+        app:layout_constraintTop_toBottomOf="@id/tvLanguage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"

@@ -8,23 +8,15 @@
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
     tools:context=".ui.activity.RepositoryActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/clToolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    >
-
     <ImageView
         android:id="@+id/ivArrowBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         />
 
     <TextView
@@ -44,11 +36,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="@id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -60,7 +49,7 @@
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorColor="@color/black_color"
         app:tabTextAppearance="@style/Body.Follow"
-        app:layout_constraintTop_toBottomOf="@id/clToolbar"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
