@@ -113,8 +113,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToDetailUser() {
         binding.ivArrow.setOnClickListener {
-            val intent = Intent(this, DetailUserActivity::class.java)
-            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+            val intent = Intent(this, FavouriteUserActivity::class.java)
+//            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
             startActivity(intent)
         }
     }
