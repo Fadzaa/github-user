@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.github_api.R
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private val searchViewModel by viewModels<SearchViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -109,8 +113,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToDetailUser() {
         binding.ivArrow.setOnClickListener {
-            val intent = Intent(this, DetailUserActivity::class.java)
-            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+            val intent = Intent(this, FavouriteUserActivity::class.java)
+//            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
             startActivity(intent)
         }
     }
