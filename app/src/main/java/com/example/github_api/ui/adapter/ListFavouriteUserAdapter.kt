@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.github_api.R
 import com.example.github_api.database.User
 import com.example.github_api.databinding.ItemUserVerticalBinding
@@ -16,6 +17,10 @@ class ListFavouriteUserAdapter(private val listUser: List<User>) : RecyclerView.
 
         fun bind(user: User) {
             with(binding) {
+                Glide.with(itemView.context)
+                    .load(user.avatar)
+                    .into(civProfileUser)
+
                 tvUsername.text = user.username
                 tvName.text = user.name
                 tvLocation.text = user.location

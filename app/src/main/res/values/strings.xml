@@ -11,5 +11,10 @@
     <string name="starred_repo">Starred Repo</string>
     <string name="separator">-</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Settings</string>
+    <string name="change_theme">Ganti Tema</string>
+    <string name="change_theme_desc">Ubah tema sesuai dengan kenyamananmu.</string>
 
+
+    <string name="arrow_back_desc">Icon untuk kembali ke halaman sebelumnya</string>
 </resources>

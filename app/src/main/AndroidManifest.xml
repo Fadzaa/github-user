@@ -15,6 +15,9 @@
         android:theme="@style/Base.Theme.Github_api"
         tools:targetApi="31">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.activity.FavouriteUserActivity"
             android:exported="false" />
         <activity
@@ -25,8 +28,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"
-            android:theme="@style/Base.Theme.Github_api.AppSplash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Base.Theme.Github_api.AppSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
