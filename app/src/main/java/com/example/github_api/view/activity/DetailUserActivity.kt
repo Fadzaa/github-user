@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.github_api.R
 import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
+import com.example.github_api.model.remote.ApiConfig
 import com.example.github_api.view.adapter.FollowPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 import com.example.github_api.viewmodel_injection.DetailViewModelFactory
@@ -19,7 +20,7 @@ class DetailUserActivity : AppCompatActivity() {
     private lateinit var username: String
 
     private val detailViewModel: DetailViewModel by viewModels {
-        DetailViewModelFactory(username)
+        DetailViewModelFactory(username, ApiConfig.getApiService())
     }
 
     companion object{

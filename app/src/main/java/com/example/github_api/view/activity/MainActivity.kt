@@ -22,6 +22,7 @@ import com.example.github_api.viewmodel_injection.MainViewModelFactory
 import com.example.github_api.viewmodel_injection.ThemeViewModelFactory
 import com.example.github_api.viewmodel.SearchViewModel
 import com.example.github_api.viewmodel.ThemeViewModel
+import com.example.github_api.viewmodel_injection.SearchViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +34,9 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel : MainViewModel by viewModels {
         MainViewModelFactory(ApiConfig.getApiService())
     }
-    private val searchViewModel by viewModels<SearchViewModel>()
+    private val searchViewModel : SearchViewModel by viewModels {
+        SearchViewModelFactory(ApiConfig.getApiService())
+    }
     private val themeViewModel: ThemeViewModel by viewModels {
         ThemeViewModelFactory(pref)
     }

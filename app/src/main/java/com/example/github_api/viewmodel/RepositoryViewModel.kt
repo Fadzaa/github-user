@@ -1,16 +1,11 @@
 package com.example.github_api.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.github_api.model.remote.response.RepositoryUserResponseItem
-import com.example.github_api.model.remote.ApiConfig
 import com.example.github_api.model.remote.ApiService
 import com.example.github_api.model.repository.UserRepoRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RepositoryViewModel(username: String, apiService: ApiService) : ViewModel() {
     private val userRepoRepository = UserRepoRepository(apiService)
