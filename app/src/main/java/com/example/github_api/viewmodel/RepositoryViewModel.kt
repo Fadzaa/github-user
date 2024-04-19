@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.github_api.data.response.RepositoryUserResponseItem
-import com.example.github_api.data.retrofit.ApiConfig
+import com.example.github_api.model.remote.response.RepositoryUserResponseItem
+import com.example.github_api.model.remote.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

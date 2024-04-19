@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingVertical="@dimen/activity_horizontal_margin"
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
-    tools:context=".ui.activity.RepositoryActivity">
+    tools:context=".view.activity.RepositoryActivity">
 
     <ImageView
         android:id="@+id/ivArrowBack"
