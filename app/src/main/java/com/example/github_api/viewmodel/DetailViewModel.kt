@@ -1,23 +1,15 @@
 package com.example.github_api.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.github_api.model.remote.response.DetailUserResponse
-import com.example.github_api.model.remote.response.ListFollowResponseItem
-import com.example.github_api.model.remote.ApiConfig
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.github_api.model.remote.ApiService
+import com.example.github_api.model.repository.UserRepository
 
-class DetailViewModel (username: String) : ViewModel() {
+class DetailViewModel(username: String, apiService: ApiService) : ViewModel() {
+    private val detailRepository = UserRepository(apiService)
+
     private val _listDetailFollowers = MutableLiveData<List<DetailUserResponse>>(emptyList())
     val listDetailFollowers: LiveData<List<DetailUserResponse>> = _listDetailFollowers
 
@@ -33,13 +25,6 @@ class DetailViewModel (username: String) : ViewModel() {
     private val _isLoadingFollowing = MutableLiveData<Boolean>()
     val isLoadingFollowing: LiveData<Boolean> = _isLoadingFollowing
 
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    companion object{
-        private const val TAG = "DetailViewModel"
-    }
-
     init {
         getListFollowers(username)
         getListFollowings(username)
@@ -47,91 +32,17 @@ class DetailViewModel (username: String) : ViewModel() {
 
     private fun getListFollowers(username: String) {
         _isLoadingFollowers.value = true
-        val client =  ApiConfig.getApiService().getUserFollowers(username)
-
-        client.enqueue(
-            object : Callback<List<ListFollowResponseItem>> {
-                override fun onResponse(call: Call<List<ListFollowResponseItem>>, response: Response<List<ListFollowResponseItem>>) {
-                    if (response.isSuccessful) {
-                        val listFollowers  = response.body()
-                        if (listFollowers != null) {
-                            coroutineScope.launch {
-                                val userDetails = listFollowers.map { follow ->
-                                    async(Dispatchers.IO) { getDetailFollow(follow.login) }
-                                }.awaitAll()
-
-                                _listDetailFollowers.value = userDetails.filterNotNull()
-                                _isLoadingFollowers.value = false
-                            }
-                        }
-                    } else {
-                        _isLoadingFollowers.value = false
-                        Log.e(TAG, "onFailure: ${response.message()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<List<ListFollowResponseItem>>, t: Throwable) {
-                    _isLoadingFollowers.value = false
-                    Log.e(TAG, "onFailure: ${t.message.toString()}")
-                }
-
-
-            }
-        )
-
+        detailRepository.getListFollowers(username).observeForever {
+            _listDetailFollowers.value = it
+            _isLoadingFollowers.value = false
+        }
     }
 
     private fun getListFollowings(username: String) {
         _isLoadingFollowing.value = true
-        val client =  ApiConfig.getApiService().getUserFollowings(username)
-
-        client.enqueue(
-            object : Callback<List<ListFollowResponseItem>> {
-                override fun onResponse(
-                    call: Call<List<ListFollowResponseItem>>,
-                    response: Response<List<ListFollowResponseItem>>, ) {
-                    if (response.isSuccessful) {
-                        val listFollowings = response.body()
-                        if (listFollowings != null) {
-                            coroutineScope.launch {
-                                val userDetails = listFollowings.map { follow ->
-                                    async(Dispatchers.IO) { getDetailFollow(follow.login) }
-                                }.awaitAll()
-
-                                _listDetailFollowings  .value = userDetails.filterNotNull()
-                                _isLoadingFollowing.value = false
-                            }
-                        }
-
-                    } else {
-                        _isLoadingFollowing.value = false
-                        Log.e(TAG, "onFailure: ${response.message()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<List<ListFollowResponseItem>>, t: Throwable) {
-                    _isLoadingFollowing.value = false
-                    Log.e(TAG, "onFailure: ${t.message.toString()}")
-                }
-            }
-        )
-    }
-
-    private fun getDetailFollow(username: String): DetailUserResponse? {
-
-        val client = ApiConfig.getApiService().getUserDetail(username)
-
-        return try {
-            val response = client.execute()
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.e(TAG, "onFailure: ${response.message()}")
-                null
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "onFailure: ${e.message}")
-            null
+        detailRepository.getListFollowings(username).observeForever {
+            _listDetailFollowings.value = it
+            _isLoadingFollowing.value = false
         }
     }
 

@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.R
 import com.example.github_api.databinding.FragmentRepoBinding
 import com.example.github_api.view.adapter.ListRepoAdapter
 import com.example.github_api.viewmodel.RepositoryViewModel
-import com.example.github_api.viewmodel.RepositoryViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.core.parameter.parametersOf
 
 
 class RepoFragment : Fragment() {
@@ -19,8 +19,8 @@ class RepoFragment : Fragment() {
     private lateinit var  username: String
     private var _binding: FragmentRepoBinding? = null
 
-    private val repoViewModel by activityViewModels<RepositoryViewModel>{
-        RepositoryViewModelFactory(username)
+    private val repoViewModel: RepositoryViewModel by activityViewModel {
+        parametersOf(username)
     }
 
     companion object {
