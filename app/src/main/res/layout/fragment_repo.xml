@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.RepoFragment">
+    tools:context=".view.fragment.RepoFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRepo"

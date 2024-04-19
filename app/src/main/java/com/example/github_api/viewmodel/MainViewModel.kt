@@ -1,21 +1,14 @@
 package com.example.github_api.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.github_api.SettingPreferences
-import com.example.github_api.data.response.DetailUserResponse
-import com.example.github_api.data.retrofit.ApiConfig
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.github_api.model.remote.ApiService
+import com.example.github_api.model.remote.response.DetailUserResponse
+import com.example.github_api.model.repository.MainRepository
 
-class MainViewModel(private val pref: SettingPreferences) : ViewModel() {
-
+class MainViewModel(apiService: ApiService) : ViewModel() {
+    private val mainRepository = MainRepository(apiService)
 
     private val _user = MutableLiveData<DetailUserResponse>()
     val user: LiveData<DetailUserResponse> = _user
@@ -23,50 +16,15 @@ class MainViewModel(private val pref: SettingPreferences) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object{
-        private const val TAG = "MainViewModel"
-    }
-
     init {
         getMyUsers()
     }
 
     private fun getMyUsers() {
         _isLoading.value = true
-
-        val client = ApiConfig.getApiService().getMyUserDetail()
-
-        client.enqueue(
-            object : Callback<DetailUserResponse> {
-                override fun onResponse(
-                    call: Call<DetailUserResponse>,
-                    response: Response<DetailUserResponse>,
-                ) {
-                    _isLoading.value = false
-                    if (response.isSuccessful) {
-                        _user.value = response.body()
-                    } else {
-                        Log.e(TAG, "onFailure: ${response.message()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                    _isLoading.value = false
-                    Log.e(TAG, "onFailure: ${t.message.toString()}")
-                }
-
-            }
-        )
-    }
-
-    fun getThemeSettings(): LiveData<Boolean> {
-        return pref.getThemeSetting().asLiveData()
-    }
-
-    fun saveThemeSetting(isDarkModeActive: Boolean) {
-        viewModelScope.launch {
-            pref.saveThemeSetting(isDarkModeActive)
+        mainRepository.getMyUserDetail().observeForever {
+            _user.value = it
+            _isLoading.value = false
         }
     }
-
 }

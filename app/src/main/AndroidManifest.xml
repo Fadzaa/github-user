@@ -15,19 +15,19 @@
         android:theme="@style/Base.Theme.Github_api"
         tools:targetApi="31">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".view.activity.SettingsActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.activity.FavouriteUserActivity"
+            android:name=".view.activity.FavouriteUserActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.RepositoryActivity"
+            android:name=".view.activity.RepositoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.DetailUserActivity"
+            android:name=".view.activity.DetailUserActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.Github_api.AppSplash">
             <intent-filter>

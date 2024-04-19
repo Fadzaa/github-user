@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.github_api.data.response.DetailUserResponse
-import com.example.github_api.data.response.ListFollowResponseItem
-import com.example.github_api.data.retrofit.ApiConfig
+import com.example.github_api.model.remote.response.DetailUserResponse
+import com.example.github_api.model.remote.response.ListFollowResponseItem
+import com.example.github_api.model.remote.ApiConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
