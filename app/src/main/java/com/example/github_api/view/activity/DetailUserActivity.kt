@@ -11,7 +11,7 @@ import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
 import com.example.github_api.view.adapter.FollowPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
-import com.example.github_api.viewmodel.DetailViewModelFactory
+import com.example.github_api.viewmodel_injection.DetailViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {

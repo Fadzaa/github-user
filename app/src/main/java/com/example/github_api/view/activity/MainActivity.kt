@@ -18,8 +18,8 @@ import com.example.github_api.databinding.ActivityMainBinding
 import com.example.github_api.model.remote.ApiConfig
 import com.example.github_api.view.adapter.ListUserAdapter
 import com.example.github_api.viewmodel.MainViewModel
-import com.example.github_api.viewmodel.MainViewModelFactory
-import com.example.github_api.viewmodel.ThemeViewModelFactory
+import com.example.github_api.viewmodel_injection.MainViewModelFactory
+import com.example.github_api.viewmodel_injection.ThemeViewModelFactory
 import com.example.github_api.viewmodel.SearchViewModel
 import com.example.github_api.viewmodel.ThemeViewModel
 

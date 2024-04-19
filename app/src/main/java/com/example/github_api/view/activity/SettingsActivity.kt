@@ -8,7 +8,7 @@ import com.example.github_api.databinding.ActivitySettingsBinding
 import com.example.github_api.model.preferences.SettingPreferences
 import com.example.github_api.model.preferences.dataStore
 import com.example.github_api.viewmodel.ThemeViewModel
-import com.example.github_api.viewmodel.ThemeViewModelFactory
+import com.example.github_api.viewmodel_injection.ThemeViewModelFactory
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding

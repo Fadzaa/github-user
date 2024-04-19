@@ -1,7 +1,8 @@
-package com.example.github_api.viewmodel
+package com.example.github_api.viewmodel_injection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.github_api.viewmodel.DetailViewModel
 
 class DetailViewModelFactory(private val username: String) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

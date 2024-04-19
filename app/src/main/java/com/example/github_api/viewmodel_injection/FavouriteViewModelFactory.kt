@@ -1,9 +1,10 @@
-package com.example.github_api.viewmodel
+package com.example.github_api.viewmodel_injection
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 
 import androidx.lifecycle.ViewModelProvider
+import com.example.github_api.viewmodel.FavouriteViewModel
 
 class FavouriteViewModelFactory (private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
         companion object {

@@ -9,9 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.R
 import com.example.github_api.databinding.FragmentRepoBinding
+import com.example.github_api.model.remote.ApiConfig
 import com.example.github_api.view.adapter.ListRepoAdapter
 import com.example.github_api.viewmodel.RepositoryViewModel
-import com.example.github_api.viewmodel.RepositoryViewModelFactory
+import com.example.github_api.viewmodel_injection.RepositoryViewModelFactory
 
 
 class RepoFragment : Fragment() {
@@ -20,7 +21,7 @@ class RepoFragment : Fragment() {
     private var _binding: FragmentRepoBinding? = null
 
     private val repoViewModel by activityViewModels<RepositoryViewModel>{
-        RepositoryViewModelFactory(username)
+        RepositoryViewModelFactory(username, ApiConfig.getApiService())
     }
 
     companion object {
