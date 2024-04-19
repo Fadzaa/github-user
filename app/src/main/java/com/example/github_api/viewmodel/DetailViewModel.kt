@@ -7,7 +7,7 @@ import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.model.remote.ApiService
 import com.example.github_api.model.repository.UserRepository
 
-class DetailViewModel (username: String, apiService: ApiService) : ViewModel() {
+class DetailViewModel(username: String, apiService: ApiService) : ViewModel() {
     private val detailRepository = UserRepository(apiService)
 
     private val _listDetailFollowers = MutableLiveData<List<DetailUserResponse>>(emptyList())

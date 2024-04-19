@@ -15,28 +15,20 @@ import com.example.github_api.model.preferences.SettingPreferences
 import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.model.preferences.dataStore
 import com.example.github_api.databinding.ActivityMainBinding
-import com.example.github_api.model.remote.ApiConfig
 import com.example.github_api.view.adapter.ListUserAdapter
 import com.example.github_api.viewmodel.MainViewModel
-import com.example.github_api.viewmodel_injection.MainViewModelFactory
-import com.example.github_api.viewmodel_injection.ThemeViewModelFactory
 import com.example.github_api.viewmodel.SearchViewModel
 import com.example.github_api.viewmodel.ThemeViewModel
-import com.example.github_api.viewmodel_injection.SearchViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding : ActivityMainBinding
     private lateinit var listUserAdapter: ListUserAdapter
     private lateinit var pref: SettingPreferences
 
 
-    private val mainViewModel : MainViewModel by viewModels {
-        MainViewModelFactory(ApiConfig.getApiService())
-    }
-    private val searchViewModel : SearchViewModel by viewModels {
-        SearchViewModelFactory(ApiConfig.getApiService())
-    }
+    private val mainViewModel : MainViewModel by viewModel()
+    private val searchViewModel : SearchViewModel by viewModel()
     private val themeViewModel: ThemeViewModel by viewModels {
         ThemeViewModelFactory(pref)
     }
