@@ -28,6 +28,7 @@ class DetailViewModel(username: String, apiService: ApiService) : ViewModel() {
     init {
         getListFollowers(username)
         getListFollowings(username)
+        getUser(username)
     }
 
     private fun getListFollowers(username: String) {
@@ -46,7 +47,10 @@ class DetailViewModel(username: String, apiService: ApiService) : ViewModel() {
         }
     }
 
-    fun setUser(userData: DetailUserResponse) {
-        _user.value = userData
+    private fun getUser(username: String) {
+        detailRepository.getDetailUser(username).observeForever {
+            _user.value = it
+        }
     }
+
 }

@@ -30,5 +30,9 @@ class FavouriteUserActivity : AppCompatActivity() {
             binding.rvFavouriteUser.adapter = adapter
         }
 
+        binding.ivArrowBack.setOnClickListener {
+            finish()
+        }
+
     }
 }

@@ -54,6 +54,7 @@ android {
 dependencies {
     implementation("androidx.test:core-ktx:1.5.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.6.0-alpha03")
     val room_version = "2.6.1"
     val retrofit_version = "2.11.0"
     val koin_version = "3.5.6"
@@ -86,7 +87,7 @@ dependencies {
     testImplementation("org.mockito:mockito-core:4.4.0")
     testImplementation("org.mockito:mockito-inline:4.4.0")
     testImplementation("org.robolectric:robolectric:4.6.1")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.ext:junit:1.2.0-alpha03")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.0-alpha03")
     androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
 }

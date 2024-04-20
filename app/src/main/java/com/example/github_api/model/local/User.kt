@@ -28,6 +28,15 @@ data class User (
     var location: String? = null,
 
     @ColumnInfo(name = "company")
-    var company: String? = null
+    var company: String? = null,
+
+    @ColumnInfo(name = "followers")
+    var followers: Int? = null,
+
+    @ColumnInfo(name = "following")
+    var following: Int? = null,
+
+    @ColumnInfo(name = "public_repos")
+    var publicRepos: Int? = null
 
 ) : Parcelable

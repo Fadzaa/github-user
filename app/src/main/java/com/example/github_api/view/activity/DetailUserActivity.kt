@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.github_api.R
 import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
+import com.example.github_api.model.local.User
 import com.example.github_api.view.adapter.FollowPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
 import com.example.github_api.viewmodel.FavouriteViewModel
@@ -27,20 +28,32 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val user  = intent.getSerializableExtra(EXTRA_USER) as? DetailUserResponse
+        val getUsername  = intent.getSerializableExtra(EXTRA_USER) as String?
 
-        if (user != null) {
-            binding.progressBarHeading?.visibility = View.VISIBLE
-            username = user.login
-            detailViewModel.setUser(user)
-
-            setInitialFavouriteState(user)
+        if (getUsername != null) {
+            username = getUsername
         }
 
-        detailViewModel.user.observe(this) {
-            setUser(it)
-            setViewPager(it)
-            binding.progressBarHeading?.visibility = View.GONE
+
+        detailViewModel.user.observe(this){ user ->
+            setUser(user)
+            setViewPager(user)
+            setInitialFavouriteState(user.id)
+
+            with(binding) {
+                progressBarHeading?.visibility = View.GONE
+                ivFavourite.setOnClickListener {
+                    if (ivFavourite.tag == "unfavourite") {
+                        setFavouriteUser(user, true)
+                        ivFavourite.setImageResource(R.drawable.ic_heart_filled)
+                        ivFavourite.tag = "favourite"
+                    } else {
+                        setFavouriteUser(user, false)
+                        ivFavourite.setImageResource(R.drawable.ic_heart)
+                        ivFavourite.tag = "unfavourite"
+                    }
+                }
+            }
         }
 
         with(binding) {
@@ -56,19 +69,8 @@ class DetailUserActivity : AppCompatActivity() {
                 navigateToRepository()
             }
 
-            ivFavourite.setOnClickListener {
-                if (ivFavourite.tag == "unfavourite") {
-                    setFavouriteUser(user!!, true)
-                    ivFavourite.setImageResource(R.drawable.ic_heart_filled)
-                    ivFavourite.tag = "favourite"
-                } else {
-                    setFavouriteUser(user!!, false)
-                    ivFavourite.setImageResource(R.drawable.ic_heart)
-                    ivFavourite.tag = "unfavourite"
-                }
-            }
-        }
 
+        }
     }
 
     private fun setUser(user: DetailUserResponse) {
@@ -108,14 +110,17 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun setFavouriteUser(user: DetailUserResponse, isFavourite: Boolean) {
-        val userFavourite = com.example.github_api.model.local.User(
+        val userFavourite = User(
             user.id,
             user.name,
             user.avatarUrl,
             user.login,
             user.bio,
             user.location,
-            user.company
+            user.company,
+            user.followers,
+            user.following,
+            user.publicRepos
         )
 
         if (isFavourite) {
@@ -125,8 +130,8 @@ class DetailUserActivity : AppCompatActivity() {
         }
     }
 
-    private fun setInitialFavouriteState(user: DetailUserResponse) {
-        favouriteViewModel.getUserById(user.id).observe(this) {
+    private fun setInitialFavouriteState(id: Int) {
+        favouriteViewModel.getUserById(id).observe(this) {
             if (it != null) {
                 binding.ivFavourite.setImageResource(R.drawable.ic_heart_filled)
                 binding.ivFavourite.tag = "favourite"

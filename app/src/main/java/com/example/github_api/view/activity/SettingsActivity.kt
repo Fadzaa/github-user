@@ -32,8 +32,14 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        binding.switchButton.setOnCheckedChangeListener { _, isChecked ->
-           themeViewModel.saveThemeSetting(isChecked )
+        with(binding) {
+            switchButton.setOnCheckedChangeListener { _, isChecked ->
+                themeViewModel.saveThemeSetting(isChecked )
+            }
+
+            ivArrowBack.setOnClickListener{
+                finish()
+            }
         }
     }
 }

@@ -2,6 +2,12 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="AddFavouriteTest">
+        <State />
+      </entry>
+      <entry key="NavigateTest">
+        <State />
+      </entry>
       <entry key="TestRoom">
         <State />
       </entry>

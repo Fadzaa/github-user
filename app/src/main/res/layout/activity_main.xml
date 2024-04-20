@@ -21,11 +21,11 @@
         android:id="@+id/progressBarHeading"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        app:layout_constraintStart_toStartOf="@id/civCurrentUser"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchBar"
         app:layout_constraintEnd_toEndOf="@id/ivArrow"
-        app:layout_constraintTop_toTopOf="@id/civCurrentUser"
-        app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"
-        />
+        app:layout_constraintStart_toStartOf="@id/civCurrentUser"
+        app:layout_constraintTop_toBottomOf="@id/ivGithubLogo"/>
 
     <ImageView
         android:id="@+id/ivGithubLogo"
@@ -127,7 +127,7 @@
         app:layout_constraintStart_toEndOf="@id/civCurrentUser"
         app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"
         android:layout_marginStart="15dp"
-
+        android:visibility="invisible"
         />
 
     <TextView
@@ -139,7 +139,7 @@
         app:layout_constraintStart_toEndOf="@id/tvFollowings"
         app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"
         android:layout_marginStart="5dp"
-
+        android:visibility="invisible"
         />
 
     <TextView
@@ -149,8 +149,9 @@
         android:text="@string/followings"
         style="@style/Body.Follow"
         app:layout_constraintStart_toEndOf="@id/tvFirstSeparator"
-        app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"        android:layout_marginStart="5dp"
-
+        app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"
+        android:layout_marginStart="5dp"
+        android:visibility="invisible"
         />
 
 

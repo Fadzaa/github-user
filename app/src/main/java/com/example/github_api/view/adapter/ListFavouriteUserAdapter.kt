@@ -1,5 +1,6 @@
 package com.example.github_api.view.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.github_api.R
 import com.example.github_api.model.local.User
 import com.example.github_api.databinding.ItemUserVerticalBinding
+import com.example.github_api.view.activity.DetailUserActivity
 
 class ListFavouriteUserAdapter(private val listUser: List<User>) : RecyclerView.Adapter<ListFavouriteUserAdapter.ListViewHolder>() {
 
@@ -40,6 +42,12 @@ class ListFavouriteUserAdapter(private val listUser: List<User>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(listUser[position])
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailUserActivity::class.java)
+            intent.putExtra(DetailUserActivity.EXTRA_USER, listUser[position].username)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

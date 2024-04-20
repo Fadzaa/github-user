@@ -33,7 +33,7 @@ class UserRepository(private val apiService: ApiService) {
                         if (listFollowers != null) {
                             coroutineScope.launch {
                                 val userDetails = listFollowers.map { follow ->
-                                    async(Dispatchers.IO) { getDetailUser(follow.login) }
+                                    async(Dispatchers.IO) { getDetailUserSync(follow.login) }
                                 }.awaitAll()
 
                                 data.value = userDetails.filterNotNull()
@@ -65,7 +65,7 @@ class UserRepository(private val apiService: ApiService) {
                         if (listFollowings != null) {
                             coroutineScope.launch {
                                 val userDetails = listFollowings.map { follow ->
-                                    async(Dispatchers.IO) { getDetailUser(follow.login) }
+                                    async(Dispatchers.IO) { getDetailUserSync(follow.login) }
                                 }.awaitAll()
                                 data.value = userDetails.filterNotNull()
                             }
@@ -96,7 +96,7 @@ class UserRepository(private val apiService: ApiService) {
                         if (users != null) {
                             coroutineScope.launch {
                                 val userDetails = users.map { user ->
-                                    async(Dispatchers.IO) { getDetailUser(user.login) }
+                                    async(Dispatchers.IO) { getDetailUserSync(user.login) }
                                 }.awaitAll()
                                 data.value = userDetails.filterNotNull()
                             }
@@ -115,7 +115,7 @@ class UserRepository(private val apiService: ApiService) {
         return data
     }
 
-    fun getDetailUser(username: String): DetailUserResponse? {
+    fun getDetailUserSync(username: String): DetailUserResponse? {
         val client = apiService.getUserDetail(username)
         return try {
             val response = client.execute()
@@ -130,6 +130,26 @@ class UserRepository(private val apiService: ApiService) {
             null
         }
 
+    }
+
+    fun getDetailUser(username: String): LiveData<DetailUserResponse> {
+        val client = apiService.getUserDetail(username)
+        val user = MutableLiveData<DetailUserResponse>()
+        client.enqueue(object : Callback<DetailUserResponse> {
+            override fun onResponse(
+                call: Call<DetailUserResponse>,
+                response: Response<DetailUserResponse>
+            ) {
+                if (response.isSuccessful) {
+                    user.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+        return user
     }
 
     companion object {

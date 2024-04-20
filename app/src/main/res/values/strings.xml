@@ -16,6 +16,7 @@
     <string name="change_theme_desc">Ubah tema sesuai dengan kenyamananmu.</string>
     <string name="home_heading">Github User API</string>
     <string name="home_desc">Discover all user of github around the world</string>
+    <string name="favourite_user">Favourite User</string>
 
 
     <string name="ic_arrow_back_desc">Icon untuk kembali ke halaman sebelumnya</string>

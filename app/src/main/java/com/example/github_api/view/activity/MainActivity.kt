@@ -96,6 +96,8 @@ class MainActivity : AppCompatActivity() {
             tvGreeting.visibility = if (isLoading) View.GONE else View.VISIBLE
             tvUserFullname.visibility = if (isLoading) View.GONE else View.VISIBLE
             civCurrentUser.visibility = if (isLoading) View.GONE else View.VISIBLE
+            tvFollowers.visibility = if (isLoading) View.GONE else View.VISIBLE
+            tvFollowings.visibility = if (isLoading) View.GONE else View.VISIBLE
             ivArrow.visibility = if (isLoading) View.GONE else View.VISIBLE
         }
     }
@@ -127,7 +129,8 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             ivArrow.setOnClickListener {
                 val intent = Intent(this@MainActivity, DetailUserActivity::class.java)
-                intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+                val username: String? = mainViewModel.user.value?.login
+                intent.putExtra(DetailUserActivity.EXTRA_USER, username)
                 startActivity(intent)
             }
 

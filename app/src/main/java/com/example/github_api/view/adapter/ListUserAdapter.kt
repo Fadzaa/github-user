@@ -48,7 +48,7 @@ class ListUserAdapter(private var listUser: List<DetailUserResponse>) : Recycler
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailUserActivity::class.java)
-            intent.putExtra(DetailUserActivity.EXTRA_USER, listUser[position])
+            intent.putExtra(DetailUserActivity.EXTRA_USER, listUser[position].login)
             holder.itemView.context.startActivity(intent)
         }
     }

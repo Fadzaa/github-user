@@ -8,7 +8,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 
-@Database(entities = [User::class], version = 2)
+@Database(entities = [User::class], version = 3)
 abstract class UserRoomDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -23,13 +23,21 @@ abstract class UserRoomDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE user ADD COLUMN followers INTEGER")
+                db.execSQL("ALTER TABLE user ADD COLUMN following INTEGER")
+                db.execSQL("ALTER TABLE user ADD COLUMN public_repos INTEGER")
+            }
+        }
+
         @JvmStatic
         fun getDatabase(context: Context): UserRoomDatabase {
             if (INSTANCE == null) {
                 synchronized(UserRoomDatabase::class.java) {
                     INSTANCE = databaseBuilder(context.applicationContext,
                         UserRoomDatabase::class.java, "user_database")
-                        .addMigrations(MIGRATION_1_2)
+                        .addMigrations(MIGRATION_2_3)
                         .build()
                 }
             }
