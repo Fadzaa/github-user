@@ -8,6 +8,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civProfileUser"
+        android:contentDescription="@string/civ_desc"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_location"
+        android:contentDescription="@string/ic_location_desc"
         app:layout_constraintStart_toStartOf="@id/tvName"
         app:layout_constraintBottom_toBottomOf="@id/tvLocation"
         app:layout_constraintTop_toTopOf="@id/tvLocation"
@@ -72,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_company"
+        android:contentDescription="@string/ic_location_desc"
         app:layout_constraintStart_toEndOf="@id/tvLocation"
         app:layout_constraintBottom_toBottomOf="@id/ivLocation"
         app:layout_constraintTop_toTopOf="@id/ivLocation"

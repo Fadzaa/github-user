@@ -20,17 +20,6 @@ class FollowFragment : Fragment() {
 
     private val detailViewModel by activityViewModels<DetailViewModel>()
 
-    companion object {
-        private const val ARG_FOLLOW_TYPE = "arg_follow_type"
-
-        @JvmStatic
-        fun newInstance(followType: FollowType) = FollowFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(ARG_FOLLOW_TYPE, followType)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -76,10 +65,22 @@ class FollowFragment : Fragment() {
             }
         }
 
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
+    companion object {
+        private const val ARG_FOLLOW_TYPE = "arg_follow_type"
 
-
+        @JvmStatic
+        fun newInstance(followType: FollowType) = FollowFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(ARG_FOLLOW_TYPE, followType)
+            }
+        }
     }
 
 }

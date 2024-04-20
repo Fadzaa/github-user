@@ -1,6 +1,8 @@
 package com.example.github_api.model.repository
 
+import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.github_api.model.remote.ApiService
@@ -17,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepository(private val apiService: ApiService) {
+class UserRepository(private val apiService: ApiService, private val application: Application) {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -46,6 +48,7 @@ class UserRepository(private val apiService: ApiService) {
 
                 override fun onFailure(call: Call<List<ListFollowResponseItem>>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
+                    Toast.makeText(application, t.message, Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -77,6 +80,7 @@ class UserRepository(private val apiService: ApiService) {
 
                 override fun onFailure(call: Call<List<ListFollowResponseItem>>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
+                    Toast.makeText(application, t.message, Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -108,6 +112,7 @@ class UserRepository(private val apiService: ApiService) {
 
                 override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
+                    Toast.makeText(application, t.message, Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -147,6 +152,7 @@ class UserRepository(private val apiService: ApiService) {
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
+                Toast.makeText(application, t.message, Toast.LENGTH_SHORT).show()
             }
         })
         return user

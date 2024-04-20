@@ -1,5 +1,6 @@
 package com.example.github_api.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,8 +8,8 @@ import com.example.github_api.model.remote.response.RepositoryUserResponseItem
 import com.example.github_api.model.remote.ApiService
 import com.example.github_api.model.repository.UserRepoRepository
 
-class RepositoryViewModel(username: String, apiService: ApiService) : ViewModel() {
-    private val userRepoRepository = UserRepoRepository(apiService)
+class RepositoryViewModel(username: String, apiService: ApiService, application: Application) : ViewModel() {
+    private val userRepoRepository = UserRepoRepository(apiService, application)
 
     private val _listRepository = MutableLiveData<List<RepositoryUserResponseItem>>(emptyList())
     val listRepository : LiveData<List<RepositoryUserResponseItem>> = _listRepository

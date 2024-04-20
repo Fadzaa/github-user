@@ -1,5 +1,6 @@
 package com.example.github_api.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,8 +8,8 @@ import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.model.remote.ApiService
 import com.example.github_api.model.repository.UserRepository
 
-class SearchViewModel(apiService: ApiService) : ViewModel() {
-    private val userRepository = UserRepository(apiService)
+class SearchViewModel(apiService: ApiService, application: Application) : ViewModel() {
+    private val userRepository = UserRepository(apiService, application)
 
     private val _listDetailUsers = MutableLiveData<List<DetailUserResponse>>(emptyList())
     val listDetailUsers: LiveData<List<DetailUserResponse>> = _listDetailUsers

@@ -1,6 +1,8 @@
 package com.example.github_api.model.repository
 
+import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.github_api.model.remote.ApiService
@@ -9,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepoRepository(private val apiService: ApiService) {
+class UserRepoRepository(private val apiService: ApiService, private val application: Application) {
 
     fun getPublicRepo(username: String) : LiveData<List<RepositoryUserResponseItem>> {
         val client = apiService.getUserRepository(username)
@@ -27,6 +29,7 @@ class UserRepoRepository(private val apiService: ApiService) {
 
                 override fun onFailure(call: Call<List<RepositoryUserResponseItem>>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
+                    Toast.makeText(application, t.message, Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -50,6 +53,7 @@ class UserRepoRepository(private val apiService: ApiService) {
 
                 override fun onFailure(call: Call<List<RepositoryUserResponseItem>>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
+                    Toast.makeText(application, t.message, Toast.LENGTH_SHORT).show()
                 }
             }
         )

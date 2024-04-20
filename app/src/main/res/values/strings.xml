@@ -20,5 +20,14 @@
 
 
     <string name="ic_arrow_back_desc">Icon untuk kembali ke halaman sebelumnya</string>
+    <string name="ic_arrow_current_user">Icon untuk menuju detail user</string>
     <string name="ic_favorite_desc">Icon untuk menambahkan user ke halaman favorit</string>
+    <string name="ic_favorite_nav">Icon untuk menuju ke halaman favorit</string>
+    <string name="ic_setting_nav">Icon untuk menuju ke halaman setting</string>
+    <string name="civ_desc">Gambar untuk menampilkan profile user</string>
+    <string name="ic_location_desc">Icon untuk menampilkan lokasi user</string>
+    <string name="ic_company_desc">Icon untuk menampilkan tempat user bekerja</string>
+    <string name="ic_github_desc">Icon Aplikasi</string>
+    <string name="ic_fork">Icon untuk menampilkan jumlah fork dari repository user</string>
+    <string name="ic_stargazers">Icon untuk menampilkan jumlah stargazers dari repository user</string>
 </resources>

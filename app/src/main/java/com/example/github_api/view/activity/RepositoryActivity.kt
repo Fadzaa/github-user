@@ -11,10 +11,6 @@ class RepositoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRepositoryBinding
     private lateinit var username: String
 
-    companion object {
-        const val EXTRA_USERNAME = "extra_username"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRepositoryBinding.inflate(layoutInflater)
@@ -47,5 +43,9 @@ class RepositoryActivity : AppCompatActivity() {
                 else -> starredRepo
             }
         }.attach()
+    }
+
+    companion object {
+        const val EXTRA_USERNAME = "extra_username"
     }
 }

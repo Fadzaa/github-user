@@ -23,23 +23,11 @@ class RepoFragment : Fragment() {
         parametersOf(username)
     }
 
-    companion object {
-        private const val ARG_REPO_TYPE = "arg_repo_type"
-
-        @JvmStatic
-        fun newInstance(repoType: RepoType, username: String) = RepoFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(ARG_REPO_TYPE, repoType)
-                putString("username", username)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             repoType = it.getSerializable(ARG_REPO_TYPE) as RepoType
-            username = it.getString("username").toString()
+            username = it.getString(USER_EXTRA).toString()
         }
     }
 
@@ -80,6 +68,24 @@ class RepoFragment : Fragment() {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    companion object {
+        private const val ARG_REPO_TYPE = "arg_repo_type"
+        private const val USER_EXTRA = "username"
+
+        @JvmStatic
+        fun newInstance(repoType: RepoType, username: String) = RepoFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(ARG_REPO_TYPE, repoType)
+                putString(USER_EXTRA, username)
+            }
+        }
     }
 }
 

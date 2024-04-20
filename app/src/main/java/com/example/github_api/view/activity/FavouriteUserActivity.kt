@@ -20,8 +20,6 @@ class FavouriteUserActivity : AppCompatActivity() {
         binding = ActivityFavouriteUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         binding.rvFavouriteUser.setHasFixedSize(true)
         binding.rvFavouriteUser.layoutManager = LinearLayoutManager(this)
 
