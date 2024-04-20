@@ -25,9 +25,61 @@
         app:layout_constraintEnd_toEndOf="@id/ivArrow"
         app:layout_constraintTop_toTopOf="@id/civCurrentUser"
         app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"
+        />
 
+    <ImageView
+        android:id="@+id/ivGithubLogo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_github"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        />
 
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_heading"
+        style="@style/Body"
+        app:layout_constraintStart_toEndOf="@id/ivGithubLogo"
+        app:layout_constraintTop_toTopOf="@id/ivGithubLogo"
+        android:layout_marginStart="10dp"
+        />
 
+    <TextView
+        android:id="@+id/tvAppDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_desc"
+        style="@style/Label"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName"
+        app:layout_constraintStart_toStartOf="@id/tvAppName"
+        app:layout_constraintBottom_toBottomOf="@id/ivGithubLogo"
+        />
+
+    <ImageView
+        android:id="@+id/ivFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintEnd_toStartOf="@id/ivSettings"
+        app:layout_constraintTop_toTopOf="@id/ivGithubLogo"
+        app:layout_constraintBottom_toBottomOf="@id/ivGithubLogo"
+        android:layout_marginEnd="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/ivSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivGithubLogo"
+        app:layout_constraintBottom_toBottomOf="@id/ivGithubLogo"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -35,7 +87,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivGithubLogo"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:visibility="invisible"
@@ -101,27 +153,7 @@
 
         />
 
-    <TextView
-        android:id="@+id/tvSecondSeparator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/separator"
-        style="@style/Body.Follow"
-        app:layout_constraintStart_toEndOf="@id/tvFollowers"
-        app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"        android:layout_marginStart="5dp"
 
-        />
-
-    <TextView
-        android:id="@+id/tvPublicRepo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/public_repo"
-        style="@style/Body.Repo"
-        app:layout_constraintStart_toEndOf="@id/tvSecondSeparator"
-        app:layout_constraintBottom_toBottomOf="@id/civCurrentUser"        android:layout_marginStart="5dp"
-
-        />
 
     <ImageView
         android:id="@+id/ivArrow"

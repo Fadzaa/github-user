@@ -65,19 +65,17 @@ class MainActivity : AppCompatActivity() {
 
         searchUser()
 
-        navigateToDetailUser()
+        navigateTo()
 
     }
 
     private fun setCurrentUser(detailUserResponse: DetailUserResponse) {
         val followers = detailUserResponse.followers
         val following = detailUserResponse.following
-        val repository = detailUserResponse.publicRepos
 
         binding.tvUserFullname.text = detailUserResponse.name
         binding.tvFollowers.text = getString(R.string.followers, followers)
         binding.tvFollowings.text = getString(R.string.followings, following)
-        binding.tvPublicRepo.text = getString(R.string.public_repo, repository)
         Glide.with(this)
             .load(detailUserResponse.avatarUrl)
             .into(binding.civCurrentUser)
@@ -125,11 +123,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToDetailUser() {
-        binding.ivArrow.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-//            intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
-            startActivity(intent)
+    private fun navigateTo() {
+        with(binding) {
+            ivArrow.setOnClickListener {
+                val intent = Intent(this@MainActivity, DetailUserActivity::class.java)
+                intent.putExtra(DetailUserActivity.EXTRA_USER, mainViewModel.user.value)
+                startActivity(intent)
+            }
+
+            ivFavourite.setOnClickListener {
+                val intent = Intent(this@MainActivity, FavouriteUserActivity::class.java)
+                startActivity(intent)
+            }
+
+            ivSettings.setOnClickListener {
+                val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
+
+
     }
 }
