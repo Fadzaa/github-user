@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,9 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel : MainViewModel by viewModel()
     private val searchViewModel : SearchViewModel by viewModel()
-    private val themeViewModel: ThemeViewModel by viewModels {
-        ThemeViewModelFactory(pref)
-    }
+    private val themeViewModel: ThemeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()

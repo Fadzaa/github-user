@@ -27,7 +27,5 @@ class FavoriteRepository(application: Application) {
         executorService.execute { mUserDao.delete(user) }
     }
 
-    fun update(user: User) {
-        executorService.execute { mUserDao.update(user) }
-    }
+    fun getUser(id: Int): LiveData<User> = mUserDao.getUserById(id)
 }

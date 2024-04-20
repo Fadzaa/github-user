@@ -16,5 +16,6 @@
     <string name="change_theme_desc">Ubah tema sesuai dengan kenyamananmu.</string>
 
 
-    <string name="arrow_back_desc">Icon untuk kembali ke halaman sebelumnya</string>
+    <string name="ic_arrow_back_desc">Icon untuk kembali ke halaman sebelumnya</string>
+    <string name="ic_favorite_desc">Icon untuk menambahkan user ke halaman favorit</string>
 </resources>

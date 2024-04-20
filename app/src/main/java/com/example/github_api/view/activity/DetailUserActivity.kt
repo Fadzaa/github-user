@@ -10,6 +10,7 @@ import com.example.github_api.model.remote.response.DetailUserResponse
 import com.example.github_api.databinding.ActivityDetailUserBinding
 import com.example.github_api.view.adapter.FollowPagerAdapter
 import com.example.github_api.viewmodel.DetailViewModel
+import com.example.github_api.viewmodel.FavouriteViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -19,9 +20,7 @@ class DetailUserActivity : AppCompatActivity() {
     private lateinit var username: String
 
     private val detailViewModel: DetailViewModel by viewModel { parametersOf(username) }
-    companion object{
-        const val EXTRA_USER =  "extra_user"
-    }
+    private val favouriteViewModel: FavouriteViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +33,8 @@ class DetailUserActivity : AppCompatActivity() {
             binding.progressBarHeading?.visibility = View.VISIBLE
             username = user.login
             detailViewModel.setUser(user)
+
+            setInitialFavouriteState(user)
         }
 
         detailViewModel.user.observe(this) {
@@ -53,6 +54,18 @@ class DetailUserActivity : AppCompatActivity() {
 
             ivArrowGreen.setOnClickListener {
                 navigateToRepository()
+            }
+
+            ivFavourite.setOnClickListener {
+                if (ivFavourite.tag == "unfavourite") {
+                    setFavouriteUser(user!!, true)
+                    ivFavourite.setImageResource(R.drawable.ic_heart_filled)
+                    ivFavourite.tag = "favourite"
+                } else {
+                    setFavouriteUser(user!!, false)
+                    ivFavourite.setImageResource(R.drawable.ic_heart)
+                    ivFavourite.tag = "unfavourite"
+                }
             }
         }
 
@@ -92,5 +105,39 @@ class DetailUserActivity : AppCompatActivity() {
         val intent = Intent(this, RepositoryActivity::class.java)
         intent.putExtra(RepositoryActivity.EXTRA_USERNAME, username)
         startActivity(intent)
+    }
+
+    private fun setFavouriteUser(user: DetailUserResponse, isFavourite: Boolean) {
+        val userFavourite = com.example.github_api.model.local.User(
+            user.id,
+            user.name,
+            user.avatarUrl,
+            user.login,
+            user.bio,
+            user.location,
+            user.company
+        )
+
+        if (isFavourite) {
+            favouriteViewModel.insert(userFavourite)
+        } else {
+            favouriteViewModel.delete(userFavourite)
+        }
+    }
+
+    private fun setInitialFavouriteState(user: DetailUserResponse) {
+        favouriteViewModel.getUserById(user.id).observe(this) {
+            if (it != null) {
+                binding.ivFavourite.setImageResource(R.drawable.ic_heart_filled)
+                binding.ivFavourite.tag = "favourite"
+            } else {
+                binding.ivFavourite.setImageResource(R.drawable.ic_heart)
+                binding.ivFavourite.tag = "unfavourite"
+            }
+        }
+    }
+
+    companion object{
+        const val EXTRA_USER =  "extra_user"
     }
 }

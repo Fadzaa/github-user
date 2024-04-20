@@ -36,14 +36,16 @@
         style="@style/HeadingMedium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivArrowBack"
-        app:layout_constraintEnd_toStartOf="@id/ivMenu"
+        app:layout_constraintEnd_toStartOf="@id/ivFavourite"
         />
 
     <ImageView
-        android:id="@+id/ivMenu"
+        android:id="@+id/ivFavourite"
+        android:tag="unfavourite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu"
+        android:src="@drawable/ic_heart"
+        android:contentDescription="@string/ic_favorite_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
@@ -247,6 +249,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
