@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/civProfileUser"
-            app:layout_constraintBottom_toBottomOf="@id/clAdditionalDetail"
+            app:layout_constraintBottom_toBottomOf="@id/vSeparator"
             />
 
         <ImageView
@@ -174,62 +174,62 @@
             android:layout_marginTop="10dp"
             />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clAdditionalDetail"
+        <ImageView
+            android:id="@+id/ivLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tvBio"
+            android:src="@drawable/ic_location"
+            android:contentDescription="@string/ic_location_desc"
+            app:layout_constraintEnd_toStartOf="@id/tvLocation"
+            app:layout_constraintTop_toTopOf="@id/tvLocation"
+            app:layout_constraintBottom_toBottomOf="@id/tvLocation"
+            android:layout_marginEnd="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Label"
+            app:layout_constraintEnd_toStartOf="@id/vSeparator"
+            app:layout_constraintTop_toTopOf="@id/vSeparator"
+            app:layout_constraintBottom_toBottomOf="@id/vSeparator"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <View
+            android:id="@+id/vSeparator"
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:layout_margin="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="10dp"
-            >
+            app:layout_constraintTop_toBottomOf="@id/tvBio"
+            />
 
-            <ImageView
-                android:id="@+id/ivLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_location"
-                android:contentDescription="@string/ic_location_desc"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+        <ImageView
+            android:id="@+id/ivCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/ic_company_desc"
+            android:src="@drawable/ic_company"
+            app:layout_constraintBottom_toBottomOf="@id/tvCompany"
+            app:layout_constraintStart_toEndOf="@id/vSeparator"
+            app:layout_constraintTop_toTopOf="@id/tvCompany" />
 
-            <TextView
-                android:id="@+id/tvLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Label"
-                app:layout_constraintStart_toEndOf="@id/ivLocation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="5dp"
-
-                />
-
-            <ImageView
-                android:id="@+id/ivCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_company"
-                android:contentDescription="@string/ic_company_desc"
-                app:layout_constraintStart_toEndOf="@id/tvLocation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="10dp"
-                />
-
-            <TextView
-                android:id="@+id/tvCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Label"
-                app:layout_constraintStart_toEndOf="@id/ivCompany"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="5dp"
-
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCompany"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCompany"
+            app:layout_constraintTop_toTopOf="@id/tvLocation" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -241,7 +241,7 @@
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorColor="@color/primary_color"
             app:tabTextAppearance="@style/Body.Follow"
-            app:layout_constraintTop_toBottomOf="@id/clAdditionalDetail"
+            app:layout_constraintTop_toBottomOf="@id/tvCompany"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
@@ -250,7 +250,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/tabs"
             app:layout_constraintStart_toStartOf="parent"
