@@ -55,11 +55,21 @@ class RepoFragment : Fragment() {
                     val adapter = ListRepoAdapter(it)
                     binding.rvRepo.adapter = adapter
                 }
+
+                repoViewModel.isRepoEmpty.observe(viewLifecycleOwner) {
+                    binding.tvDataEmpty.visibility = if (it) View.VISIBLE else View.GONE
+                    binding.tvDataEmpty.text = getString(R.string.repo_empty)
+                }
             }
             RepoType.STARRED -> {
                 repoViewModel.listStarredRepository.observe(viewLifecycleOwner) {
                     val adapter = ListRepoAdapter(it)
                     binding.rvRepo.adapter = adapter
+                }
+
+                repoViewModel.isStarredRepoEmpty.observe(viewLifecycleOwner) {
+                    binding.tvDataEmpty.visibility = if (it) View.VISIBLE else View.GONE
+                    binding.tvDataEmpty.text = getString(R.string.starred_repo_empty)
                 }
             }
         }

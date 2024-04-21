@@ -26,6 +26,12 @@ class DetailViewModel(username: String, apiService: ApiService, application: App
     private val _isLoadingFollowing = MutableLiveData<Boolean>()
     val isLoadingFollowing: LiveData<Boolean> = _isLoadingFollowing
 
+    private val _isFollowersDataEmpty = MutableLiveData<Boolean>()
+    val isFollowersDataEmpty: LiveData<Boolean> = _isFollowersDataEmpty
+
+    private val _isFollowingDataEmpty = MutableLiveData<Boolean>()
+    val isFollowingDataEmpty: LiveData<Boolean> = _isFollowingDataEmpty
+
     init {
         getListFollowers(username)
         getListFollowings(username)
@@ -37,6 +43,7 @@ class DetailViewModel(username: String, apiService: ApiService, application: App
         detailRepository.getListFollowers(username).observeForever {
             _listDetailFollowers.value = it
             _isLoadingFollowers.value = false
+            _isFollowersDataEmpty.value = it.isEmpty()
         }
     }
 
@@ -45,6 +52,7 @@ class DetailViewModel(username: String, apiService: ApiService, application: App
         detailRepository.getListFollowings(username).observeForever {
             _listDetailFollowings.value = it
             _isLoadingFollowing.value = false
+            _isFollowingDataEmpty.value = it.isEmpty()
         }
     }
 

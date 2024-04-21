@@ -17,17 +17,22 @@ class SearchViewModel(apiService: ApiService, application: Application) : ViewMo
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isDataEmpty = MutableLiveData<Boolean>()
+    val isDataEmpty: LiveData<Boolean> = _isDataEmpty
+
     init {
         searchUsers("a")
     }
 
     fun searchUsers(query: String) {
         _listDetailUsers.value = emptyList()
+        _isDataEmpty.value = false
         _isLoading.value = true
 
         userRepository.searchUsers(query).observeForever {
             _listDetailUsers.value = it
             _isLoading.value = false
+            _isDataEmpty.value = it.isEmpty()
         }
     }
 }

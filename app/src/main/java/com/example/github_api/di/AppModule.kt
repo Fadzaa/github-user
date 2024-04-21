@@ -19,9 +19,9 @@ val appModule = module {
         ApiConfig.getApiService()
     }
 
-    viewModel { MainViewModel(get(), androidApplication())}
-    viewModel { SearchViewModel(get(), androidApplication())}
-    viewModel { ThemeViewModel(SettingPreferences.getInstance(androidApplication().dataStore)) }
+    factory { MainViewModel(get(), androidApplication())}
+    factory { SearchViewModel(get(), androidApplication())}
+    factory { ThemeViewModel(SettingPreferences.getInstance(androidApplication().dataStore)) }
     factory { (username: String) -> RepositoryViewModel(username, get(), androidApplication()) }
     factory { (username: String) -> DetailViewModel(username, get(), androidApplication()) }
     factory { FavouriteViewModel(androidApplication()) }

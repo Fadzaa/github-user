@@ -20,6 +20,12 @@ class RepositoryViewModel(username: String, apiService: ApiService, application:
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
 
+    private val _isRepoEmpty = MutableLiveData<Boolean>()
+    val isRepoEmpty : LiveData<Boolean> = _isRepoEmpty
+
+    private val _isStarredRepoEmpty = MutableLiveData<Boolean>()
+    val isStarredRepoEmpty : LiveData<Boolean> = _isStarredRepoEmpty
+
     init {
         getListRepository(username)
         getListStarredRepository(username)
@@ -30,6 +36,7 @@ class RepositoryViewModel(username: String, apiService: ApiService, application:
         userRepoRepository.getPublicRepo(username).observeForever {
             _isLoading.value = false
             _listRepository.value = it
+            _isRepoEmpty.value = it.isEmpty()
         }
     }
 
@@ -38,6 +45,7 @@ class RepositoryViewModel(username: String, apiService: ApiService, application:
         userRepoRepository.getStarredRepo(username).observeForever {
             _isLoading.value = false
             _listStarredRepository.value = it
+            _isStarredRepoEmpty.value = it.isEmpty()
         }
     }
 

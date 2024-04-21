@@ -41,7 +41,7 @@ class DetailUserActivity : AppCompatActivity() {
             setInitialFavouriteState(user.id)
 
             with(binding) {
-                progressBarHeading?.visibility = View.GONE
+                progressBarHeading.visibility = View.GONE
                 ivFavourite.setOnClickListener {
                     if (ivFavourite.tag == "unfavourite") {
                         setFavouriteUser(user, true)

@@ -10,7 +10,21 @@ import com.example.github_api.model.repository.FavoriteRepository
 class FavouriteViewModel(application: Application) : ViewModel() {
     private val mUserRepository = FavoriteRepository(application)
 
-    fun getAllUser() : LiveData<List<User>> = mUserRepository.getAllUser()
+    private val _listUser = MutableLiveData<List<User>>()
+    val listUser: LiveData<List<User>> = _listUser
+
+    private val _isDataEmpty = MutableLiveData<Boolean>()
+    val isDataEmpty: LiveData<Boolean> = _isDataEmpty
+
+    init {
+        getAllUser()
+    }
+    private fun getAllUser() {
+        mUserRepository.getAllUser().observeForever {
+            _listUser.value = it
+            _isDataEmpty.value = it.isEmpty()
+        }
+    }
 
     fun insert(user: User) : Unit = mUserRepository.insert(user)
 

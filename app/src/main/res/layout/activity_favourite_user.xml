@@ -41,4 +41,15 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         />
 
+    <TextView
+        android:id="@+id/tvDataEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/favourite_empty"
+        style="@style/Label"
+        app:layout_constraintStart_toStartOf="@id/rvFavouriteUser"
+        app:layout_constraintEnd_toEndOf="@id/rvFavouriteUser"
+        app:layout_constraintTop_toTopOf="@id/rvFavouriteUser"
+        app:layout_constraintBottom_toBottomOf="@id/rvFavouriteUser"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

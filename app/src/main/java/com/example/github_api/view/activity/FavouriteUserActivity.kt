@@ -2,6 +2,7 @@ package com.example.github_api.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.databinding.ActivityFavouriteUserBinding
 import com.example.github_api.view.adapter.ListFavouriteUserAdapter
@@ -23,9 +24,17 @@ class FavouriteUserActivity : AppCompatActivity() {
         binding.rvFavouriteUser.setHasFixedSize(true)
         binding.rvFavouriteUser.layoutManager = LinearLayoutManager(this)
 
-        favouriteViewModel.getAllUser().observe(this) {
+        favouriteViewModel.listUser.observe(this) {
             adapter = ListFavouriteUserAdapter(it)
             binding.rvFavouriteUser.adapter = adapter
+        }
+
+        favouriteViewModel.isDataEmpty.observe(this) {
+            binding.tvDataEmpty.visibility = if (it) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         }
 
         binding.ivArrowBack.setOnClickListener {

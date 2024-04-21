@@ -63,6 +63,14 @@ class MainActivity : AppCompatActivity() {
             setLoading(it)
         }
 
+        searchViewModel.isDataEmpty.observe(this) {
+            if (it) {
+                binding.tvNoData.visibility = View.VISIBLE
+            } else {
+                binding.tvNoData.visibility = View.GONE
+            }
+        }
+
         searchUser()
 
         navigateTo()

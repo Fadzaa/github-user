@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">github_api</string>
     <string name="username">(%1$s)</string>
-    <string name="greeting">Hello There,</string>
+    <string name="greeting">Halo,</string>
     <string name="followings">Followings (%1$d)</string>
     <string name="followers">Followers (%1$d)</string>
     <string name="search_user">Search User...</string>
@@ -15,8 +15,14 @@
     <string name="change_theme">Ganti Tema</string>
     <string name="change_theme_desc">Ubah tema sesuai dengan kenyamananmu.</string>
     <string name="home_heading">Github User API</string>
-    <string name="home_desc">Discover all user of github around the world</string>
+    <string name="home_desc">Cari seluruh user yang ada di Github</string>
     <string name="favourite_user">Favourite User</string>
+    <string name="search_empty">User yang kamu cari tidak bisa ditemukan</string>
+    <string name="favourite_empty">User favoritmu masih kosong</string>
+    <string name="followers_empty">User ini tidak memiliki pengikut</string>
+    <string name="following_empty">User ini tidak mengikuti siapapun</string>
+    <string name="repo_empty">User ini tidak memiliki repository</string>
+    <string name="starred_repo_empty">User ini tidak memiliki starred repository</string>
 
 
     <string name="ic_arrow_back_desc">Icon untuk kembali ke halaman sebelumnya</string>

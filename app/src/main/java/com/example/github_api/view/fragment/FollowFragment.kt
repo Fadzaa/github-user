@@ -52,6 +52,11 @@ class FollowFragment : Fragment() {
                 detailViewModel.isLoadingFollowers.observe(viewLifecycleOwner) {
                     binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
                 }
+
+                detailViewModel.isFollowersDataEmpty.observe(viewLifecycleOwner) {
+                    binding.tvDataEmpty.visibility = if (it) View.VISIBLE else View.GONE
+                    binding.tvDataEmpty.text = getString(R.string.followers_empty)
+                }
             }
             FollowType.FOLLOWING -> {
                 detailViewModel.listDetailFollowings.observe(viewLifecycleOwner) {
@@ -61,6 +66,11 @@ class FollowFragment : Fragment() {
 
                 detailViewModel.isLoadingFollowing.observe(viewLifecycleOwner) {
                     binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+                }
+
+                detailViewModel.isFollowingDataEmpty.observe(viewLifecycleOwner) {
+                    binding.tvDataEmpty.visibility = if (it) View.VISIBLE else View.GONE
+                    binding.tvDataEmpty.text = getString(R.string.following_empty)
                 }
             }
         }

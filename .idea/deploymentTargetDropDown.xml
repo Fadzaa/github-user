@@ -8,9 +8,6 @@
       <entry key="NavigateTest">
         <State />
       </entry>
-      <entry key="TestRoom">
-        <State />
-      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -26,9 +23,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-04-14T09:03:00.149599700Z" />
         </State>
-      </entry>
-      <entry key="insertUserTest()">
-        <State />
       </entry>
     </value>
   </component>

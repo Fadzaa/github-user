@@ -23,4 +23,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
+    <TextView
+        android:id="@+id/tvDataEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Label"
+        app:layout_constraintStart_toStartOf="@id/rvRepo"
+        app:layout_constraintEnd_toEndOf="@id/rvRepo"
+        app:layout_constraintTop_toTopOf="@id/rvRepo"
+        app:layout_constraintBottom_toBottomOf="@id/rvRepo"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
